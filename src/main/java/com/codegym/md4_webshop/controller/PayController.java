@@ -58,13 +58,16 @@ public class PayController implements IGeneralController<Pay> {
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
 
+
+
     @Override
-    public ResponseEntity<Pay> delete(@RequestBody Long id) {
-        Optional<Pay> customerOptional = iPayService.findById(id);
+    @DeleteMapping
+    public ResponseEntity<Pay> delete(@RequestBody Pay pay) {
+        Optional<Pay> customerOptional = iPayService.findById(pay.getId());
         if (!customerOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        iPayService.remove(id);
+        iPayService.remove(pay.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
