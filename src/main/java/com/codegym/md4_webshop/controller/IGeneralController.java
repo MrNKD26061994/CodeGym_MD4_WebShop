@@ -4,11 +4,11 @@ import com.codegym.md4_webshop.model.cart.Cart;
 import org.springframework.http.ResponseEntity;
 
 public interface IGeneralController<T> {
-    Iterable<T> list();
+    ResponseEntity<Iterable<T>> list();
 
     ResponseEntity<T> create(T t);
 
     ResponseEntity<T> update(T t);
 
-    ResponseEntity<T> delete();
+    ResponseEntity<T> delete(Long id);
 }
