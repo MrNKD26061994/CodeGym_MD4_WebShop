@@ -33,16 +33,16 @@ public class UserController implements IGeneralController<User> {
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<User> update(@RequestBody User user) {
-//        Optional<User> userOptional = userService.findById(user.getId());
-//        if (!userOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        userService.save(user);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@RequestBody User user) {
+        Optional<User> userOptional = userService.findById(user.getId());
+        if (!userOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<User> delete(@PathVariable Long id) {
