@@ -34,10 +34,10 @@ public class ImageController implements IGeneralController<Image> {
     }
 
     @Override
-@PostMapping
+    @PostMapping
     public ResponseEntity<Image> create(@RequestBody Image image) {
-        Optional<Image> customerOptional = iImageService.findById(image.getId());
-        if (customerOptional.isPresent()) {
+        Optional<Image> imageOptional = iImageService.findImageByImage(image.getImage());
+        if (imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(iImageService.save(image), HttpStatus.OK);
@@ -45,11 +45,17 @@ public class ImageController implements IGeneralController<Image> {
 
     @Override
     public ResponseEntity<Image> update(Image image) {
-        return null;
+        Optional<Image> imageOptional = iImageService.findById(image.getId());
+        if (!imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        image.setId(imageOptional.get().getId());
+        return new ResponseEntity<>(iImageService.save(image), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Image> delete(Long id) {
-        return null;
+    @DeleteMapping
+    public ResponseEntity<Image> delete(@RequestBody Long id) {
+return null;
     }
 }
