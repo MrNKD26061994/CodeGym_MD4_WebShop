@@ -11,23 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController implements IGeneralController<User> {
+
+
     @Override
-    public Iterable<Cart> list() {
+    public Iterable<User> list() {
         return null;
     }
 
     @Override
-    public ResponseEntity<Cart> create(User user) {
+    public ResponseEntity<User> create(User user) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Cart> update(User user) {
+    public ResponseEntity<User> update(User user) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Cart> delete() {
+    public ResponseEntity<User> delete() {
         return null;
     }
 }
