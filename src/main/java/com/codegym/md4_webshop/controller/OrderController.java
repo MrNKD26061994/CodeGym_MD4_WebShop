@@ -45,7 +45,12 @@ private final IOrderService iOrderService;
 
     @Override
     public ResponseEntity<Orders> update(Orders orders) {
-        return null;
+        Optional<Orders> imageOptional = iOrderService.findById(orders.getId());
+        if (!imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        orders.setId(imageOptional.get().getId());
+        return new ResponseEntity<>(iOrderService.save(orders), HttpStatus.OK);
     }
 
     @Override
