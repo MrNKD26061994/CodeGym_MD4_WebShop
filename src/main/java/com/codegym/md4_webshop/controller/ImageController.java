@@ -1,8 +1,6 @@
 package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.model.Image;
-import com.codegym.md4_webshop.model.Pay;
-import com.codegym.md4_webshop.repository.ImageRepository;
 import com.codegym.md4_webshop.service.IImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,11 +24,11 @@ public class ImageController implements IGeneralController<Image> {
     @Override
     @GetMapping
     public ResponseEntity<Iterable<Image>> list() {
-        List<Image> pays = (List<Image>) iImageService.findAll();
-        if (pays.isEmpty()) {
+        List<Image> images = (List<Image>) iImageService.findAll();
+        if (images.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(pays, HttpStatus.OK);
+        return new ResponseEntity<>(images, HttpStatus.OK);
     }
 
     @Override
@@ -44,7 +42,7 @@ public class ImageController implements IGeneralController<Image> {
     }
 
     @Override
-    public ResponseEntity<Image> update(Image image) {
+    public ResponseEntity<Image> update(@RequestBody Image image) {
         Optional<Image> imageOptional = iImageService.findById(image.getId());
         if (!imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

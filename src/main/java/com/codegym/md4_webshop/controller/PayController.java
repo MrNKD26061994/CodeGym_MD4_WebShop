@@ -1,5 +1,6 @@
 package com.codegym.md4_webshop.controller;
 
+import com.codegym.md4_webshop.model.Image;
 import com.codegym.md4_webshop.model.Pay;
 import com.codegym.md4_webshop.service.IPayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -36,8 +36,8 @@ public class PayController implements IGeneralController<Pay> {
     @PostMapping
     public ResponseEntity<Pay> create(@RequestBody Pay pay) {
         List<Pay> pays = (List<Pay>) iPayService.findAll();
-        for (Pay p: pays
-             ) {
+        for (Pay p : pays
+        ) {
             if (p.getName().equals(pay.getName())) {
                 System.out.println("Đã có");
                 return new ResponseEntity<>(HttpStatus.IM_USED);
@@ -57,7 +57,6 @@ public class PayController implements IGeneralController<Pay> {
         pay.setId(customerOptional.get().getId());
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
-
 
 
     @Override
