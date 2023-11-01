@@ -27,12 +27,12 @@ public class UserController implements IGeneralController<User> {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-//    @PostMapping("")
-//    public ResponseEntity<User> create(@RequestBody User user) {
-//        user.setStatus(1);
-//        userService.save(user);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
+    @PostMapping("")
+    public ResponseEntity<User> create(@RequestBody User user) {
+        user.setStatus(1);
+        userService.save(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 //
 //    @PutMapping("/{id}")
 //    public ResponseEntity<User> update(@RequestBody User user) {
