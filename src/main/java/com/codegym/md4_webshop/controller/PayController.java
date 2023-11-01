@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -34,23 +35,26 @@ public class PayController implements IGeneralController<Pay> {
     @Override
     @PostMapping
     public ResponseEntity<Pay> create(@RequestBody Pay pay) {
-        if (pay != null) {
-            System.out.println("Đã có");
-            return new ResponseEntity<>(HttpStatus.IM_USED);
+        List<Pay> pays = (List<Pay>) iPayService.findAll();
+        for (Pay p: pays
+             ) {
+            if (p.getName().equals(pay.getName())) {
+                System.out.println("Đã có");
+                return new ResponseEntity<>(HttpStatus.IM_USED);
+            }
         }
-        System.out.println("chưa cóc có");
+        System.out.println("chưa có");
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
 
     @Override
     @PutMapping
     public ResponseEntity<Pay> update(@RequestBody Pay pay) {
-        Optional<Pay> payOptional = iPayService.findById(pay.getId());
-        if (!payOptional.isPresent()) {
+        Optional<Pay> customerOptional = iPayService.findById(pay.getId());
+        if (!customerOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-        pay.setId(payOptional.get().getId());
+        pay.setId(customerOptional.get().getId());
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
 
@@ -62,6 +66,5 @@ public class PayController implements IGeneralController<Pay> {
         }
         iPayService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 }

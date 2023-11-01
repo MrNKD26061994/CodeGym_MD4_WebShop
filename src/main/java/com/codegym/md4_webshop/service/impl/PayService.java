@@ -39,7 +39,7 @@ public class PayService implements IPayService {
     }
 
     @Override
-    public Pay findPayByName(String name) {
-        return findPayByName(name);
+    public Optional<Pay> findByName(String name) {
+        return payRepository.findByName(name);
     }
 }
