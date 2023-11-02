@@ -13,7 +13,7 @@ public class CategoryService implements ICategoryService {
     CategoryRepository categoryRepository;
     @Override
     public Iterable<Category> findAll() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAllByStatus(1);
     }
 
     @Override
