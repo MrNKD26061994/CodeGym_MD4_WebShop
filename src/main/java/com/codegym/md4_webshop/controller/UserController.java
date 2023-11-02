@@ -2,6 +2,7 @@ package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.model.User;
 import com.codegym.md4_webshop.model.cart.Cart;
+import com.codegym.md4_webshop.service.IRoleService;
 import com.codegym.md4_webshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import java.util.Optional;
 public class UserController implements IGeneralController<User> {
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IRoleService roleService;
 
     @GetMapping
     public ResponseEntity<Iterable<User>> list() {
@@ -32,6 +35,7 @@ public class UserController implements IGeneralController<User> {
         user.setStatus(1);
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
+
     }
 
     @PutMapping("/{id}")
