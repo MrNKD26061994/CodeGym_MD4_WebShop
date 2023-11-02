@@ -1,6 +1,6 @@
 package com.codegym.md4_webshop.model.oderProduct;
 
-import com.codegym.md4_webshop.model.Order;
+import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +23,9 @@ public class OrderProduct {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    @MapsId("orderID")
-    private Order order;
+    @JoinColumn(name = "orders_id")
+    @MapsId("ordersID")
+    private Orders orders;
 
     private int count;
     private double price;

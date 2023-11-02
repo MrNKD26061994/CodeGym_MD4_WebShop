@@ -28,4 +28,5 @@ public class Product extends BaseModel {
 
     @ManyToOne
     private User user;
+
 }

@@ -1,6 +1,7 @@
 package com.codegym.md4_webshop.model.base;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
