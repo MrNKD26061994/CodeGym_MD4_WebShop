@@ -5,12 +5,10 @@ import com.codegym.md4_webshop.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -18,7 +16,8 @@ import java.util.List;
 public class CategoryController implements IGeneralController<Category> {
     @Autowired
     private ICategoryService categoryService;
-    @Override
+
+    @GetMapping
     public ResponseEntity<Iterable<Category>> list() {
         List<Category> categoryList = (List<Category>) categoryService.findAll();
         if (categoryList.isEmpty()){
@@ -27,16 +26,21 @@ public class CategoryController implements IGeneralController<Category> {
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity create(@RequestBody Category category) {
+    @PostMapping("")
+    public ResponseEntity<Category> create(@RequestBody Category category) {
         category.setStatus(1);
         categoryService.save(category);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @Override
-    public ResponseEntity update(Object o) {
-        return null;
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> update(@RequestBody Category category) {
+        Optional<Category> categoryOptional = categoryService.findById(category.getId());
+        if (!categoryOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        categoryService.save(category);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
