@@ -35,15 +35,10 @@ public class PayController implements IGeneralController<Pay> {
     @Override
     @PostMapping
     public ResponseEntity<Pay> create(@RequestBody Pay pay) {
-        List<Pay> pays = (List<Pay>) iPayService.findAll();
-        for (Pay p : pays
-        ) {
-            if (p.getName().equals(pay.getName())) {
-                System.out.println("Đã có");
-                return new ResponseEntity<>(HttpStatus.IM_USED);
-            }
+        Optional<Pay> imageOptional = iPayService.findById(pay.getId());
+        if (imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        System.out.println("chưa có");
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
 
@@ -54,19 +49,18 @@ public class PayController implements IGeneralController<Pay> {
         if (!customerOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        pay.setId(customerOptional.get().getId());
         return new ResponseEntity<>(iPayService.save(pay), HttpStatus.OK);
     }
 
 
     @Override
     @DeleteMapping
-    public ResponseEntity<Pay> delete(@RequestBody Pay pay) {
-        Optional<Pay> customerOptional = iPayService.findById(pay.getId());
+    public ResponseEntity<Pay> delete(@RequestBody Long id) {
+        Optional<Pay> customerOptional = iPayService.findById(id);
         if (!customerOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        iPayService.remove(pay.getId());
+        iPayService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

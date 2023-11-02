@@ -1,8 +1,8 @@
 package com.codegym.md4_webshop.service.impl;
 
+import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.repository.OrderRepository;
 import com.codegym.md4_webshop.service.IOrderService;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +18,20 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Iterable<Order> findAll() {
+    public Iterable<Orders> findAll() {
         return orderRepository.findAll();
     }
 
     @Override
-    public Optional<Order> findById(Long id) {
+    public Optional<Orders> findById(Long id) {
         return orderRepository.findById(id);
     }
 
-    @Override
-    public Order save(Order order) {
-        return orderRepository.save(order);
-    }
 
+    @Override
+    public Orders save(Orders orders) {
+        return orderRepository.save(orders);
+    }
 
     @Override
     public void remove(Long id) {

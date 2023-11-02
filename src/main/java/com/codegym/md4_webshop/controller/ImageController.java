@@ -1,6 +1,7 @@
 package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.model.Image;
+import com.codegym.md4_webshop.model.Pay;
 import com.codegym.md4_webshop.service.IImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,23 +43,23 @@ public class ImageController implements IGeneralController<Image> {
     }
 
     @Override
+    @PutMapping
     public ResponseEntity<Image> update(@RequestBody Image image) {
         Optional<Image> imageOptional = iImageService.findById(image.getId());
         if (!imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        image.setId(imageOptional.get().getId());
         return new ResponseEntity<>(iImageService.save(image), HttpStatus.OK);
     }
 
     @Override
-    @DeleteMapping
-    public ResponseEntity<Image> delete(@RequestBody Image image) {
-        Optional<Image> imageOptional = iImageService.findById(image.getId());
-        if (!imageOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        @DeleteMapping
+        public ResponseEntity<Image> delete(@RequestBody Long id) {
+            Optional<Image> imageOptional = iImageService.findById(id);
+            if (!imageOptional.isPresent()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            iImageService.remove(imageOptional.get().getId());
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        iImageService.remove(image.getId());
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

@@ -1,9 +1,7 @@
 package com.codegym.md4_webshop.controller;
 
-import com.codegym.md4_webshop.model.Image;
 import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.service.IOrderService;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +42,8 @@ private final IOrderService iOrderService;
     }
 
     @Override
-    public ResponseEntity<Orders> update(Orders orders) {
+    @PutMapping
+    public ResponseEntity<Orders> update(@RequestBody Orders orders) {
         Optional<Orders> imageOptional = iOrderService.findById(orders.getId());
         if (!imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,9 +51,16 @@ private final IOrderService iOrderService;
         orders.setId(imageOptional.get().getId());
         return new ResponseEntity<>(iOrderService.save(orders), HttpStatus.OK);
     }
-
+    @DeleteMapping
+    public ResponseEntity<Orders> changeStatus (@RequestBody Orders orders) {
+        Optional<Orders> imageOptional = iOrderService.findById(orders.getId());
+        if (!imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(iOrderService.save(orders), HttpStatus.OK);
+    }
     @Override
-    public ResponseEntity<Orders> delete(Orders orders) {
+    public ResponseEntity<Orders> delete(@RequestBody Long id) {
         return null;
     }
 }
