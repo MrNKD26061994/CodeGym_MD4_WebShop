@@ -33,16 +33,16 @@ public class CompanyController implements IGeneralController<Company> {
         companyService.save(company);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Company> update(@RequestBody Company company) {
-//        Optional<Company> companyOptional = companyService.findById(company.getId());
-//        if (!companyOptional.isPresent()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        companyService.save(company);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Company> update(@RequestBody Company company) {
+        Optional<Company> companyOptional = companyService.findById(company.getId());
+        if (!companyOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        companyService.save(company);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Company> delete(@PathVariable Long id) {
