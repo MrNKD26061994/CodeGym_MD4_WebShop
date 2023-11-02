@@ -1,6 +1,7 @@
 package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.model.Category;
+import com.codegym.md4_webshop.model.User;
 import com.codegym.md4_webshop.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,8 +44,14 @@ public class CategoryController implements IGeneralController<Category> {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity delete(Long id) {
-        return null;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Category> delete(@PathVariable Long id) {
+        Optional<Category> categoryOptional = categoryService.findById(id);
+        if (!categoryOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        categoryOptional.get().setStatus(0);
+        categoryService.save(categoryOptional.get());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
