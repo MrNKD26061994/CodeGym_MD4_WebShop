@@ -27,12 +27,12 @@ public class CompanyController implements IGeneralController<Company> {
         return new ResponseEntity<>(companyList, HttpStatus.OK);
     }
 
-//    @PostMapping("")
-//    public ResponseEntity<Company> create(@RequestBody Company company) {
-//        company.setStatus(1);
-//        companyService.save(company);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
+    @PostMapping("")
+    public ResponseEntity<Company> create(@RequestBody Company company) {
+        company.setStatus(1);
+        companyService.save(company);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 //
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Company> update(@RequestBody Company company) {
