@@ -32,4 +32,18 @@ public class ProductService implements IProductService {
     public void remove(Long id) {
     productRepository.delete(productRepository.findById(id).get());
     }
+
+    @Override
+    public void editQuantity(Long id, int quantity) {
+        Optional<Product> product = productRepository.findById(id);
+        product.get().setQuantity(quantity);
+        productRepository.save(product.get());
+
+    }
+    @Override
+    public void editPrice(Long id, double price) {
+        Optional<Product> product = productRepository.findById(id);
+        product.get().setPrice(price);
+        productRepository.save(product.get());
+    }
 }

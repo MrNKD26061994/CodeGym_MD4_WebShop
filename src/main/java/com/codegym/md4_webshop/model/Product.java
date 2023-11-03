@@ -31,6 +31,21 @@ public class Product{
     @ManyToOne
     private User user;
 
+    public Product(Long id, double price) {
+        this.id = id;
+        this.price = price;
+    }
+
+    public Product(Long id, int quantity) {
+        this.id = id;
+        this.quantity = quantity;
+    }
+
+    public Product(Long id, double price, int quantity) {
+        this.id = id;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     public Product(int status, String name, double price, int quantity, int discount, String description, Category category, Company company, User user) {
         this.status = status;
