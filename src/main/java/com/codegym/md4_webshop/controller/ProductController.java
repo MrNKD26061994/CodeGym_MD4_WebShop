@@ -51,19 +51,4 @@ public class ProductController {
         productService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @PostMapping("/changeQuantity")
-    public ResponseEntity<Product> changeQuantity(@RequestBody ForPayment forPayment){
-        Optional<Product> product1 = productService.findById(forPayment.getId());
-        product1.get().setQuantity(forPayment.getQuantity());
-        productService.save(product1.get());
-        return new ResponseEntity<>(product1.get(), HttpStatus.OK);
-    }
-    @PostMapping("/changePrice")
-    public ResponseEntity<Product> changePrice(@RequestBody ForPayment forPayment){
-        Optional<Product> product1 = productService.findById(forPayment.getId());
-        product1.get().setPrice(forPayment.getPrice());
-        productService.save(product1.get());
-        return new ResponseEntity<>(product1.get(), HttpStatus.OK);
-    }
 }
