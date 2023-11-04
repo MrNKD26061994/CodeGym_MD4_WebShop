@@ -12,6 +12,7 @@ import com.codegym.md4_webshop.model.CustomUserDetails;
 import com.codegym.md4_webshop.service.impl.RoleService;
 import com.codegym.md4_webshop.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,6 +54,18 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
+//    @GetMapping
+//    public ResponseEntity<Iterable<User>> showAllUser() {
+//        Iterable<User> users = userService.findAll();
+//        return new ResponseEntity<>(users, HttpStatus.OK);
+//    }
+//
+    @GetMapping("/admin")
+    public ResponseEntity<Iterable<User>> showAllUserByAdmin() {
+        Iterable<User> users = userService.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
         if (userService.existsByUsername(signupRequest.getUserName())) {
@@ -73,7 +87,7 @@ public class UserController {
                 if (role.equals("admin")) {
                     Role adminRole = roleService.findByRoleName(ERole.ROLE_ADMIN)
                             .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
-                listRole.add(adminRole);
+                    listRole.add(adminRole);
                 }
                 if (role.equals("moderator")) {
                     Role modRole = roleService.findByRoleName(ERole.ROLE_MODERATOR)
@@ -110,5 +124,4 @@ public class UserController {
                 listRole)
         );
     }
-
 }
