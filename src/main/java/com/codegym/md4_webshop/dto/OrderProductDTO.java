@@ -1,6 +1,5 @@
 package com.codegym.md4_webshop.dto;
 
-import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.model.cart.Cart;
 import lombok.AllArgsConstructor;
 import lombok.Data;

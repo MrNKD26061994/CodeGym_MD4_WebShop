@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 public class CustomerService implements ICustomerService {
 
@@ -48,7 +46,7 @@ public class CustomerService implements ICustomerService {
         orderProductController.create(orderProductDTO);
 
         for (Cart item : customerPayDTO.getCartList()) {
-            cartController.delete(new CartID(item.getProduct().getId(),item.getUser().getId()));
+            cartController.delete(new CartID(item.getProduct().getId(), item.getUser().getId()));
         }
     }
 
@@ -57,7 +55,7 @@ public class CustomerService implements ICustomerService {
     public void cancel(Long idOrders) {
         Iterable<OrderProduct> list = orderProductService.findAllByOrders(idOrders);
         for (OrderProduct item : list) {
-            
+
         }
     }
 }

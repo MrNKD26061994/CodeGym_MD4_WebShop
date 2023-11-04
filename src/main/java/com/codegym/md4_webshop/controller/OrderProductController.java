@@ -1,12 +1,9 @@
 package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.dto.OrderProductDTO;
-import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.model.cart.Cart;
 import com.codegym.md4_webshop.model.oderProduct.OrderProduct;
-import com.codegym.md4_webshop.service.ICartService;
 import com.codegym.md4_webshop.service.IOrderProductService;
-import com.fasterxml.jackson.databind.util.ArrayIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

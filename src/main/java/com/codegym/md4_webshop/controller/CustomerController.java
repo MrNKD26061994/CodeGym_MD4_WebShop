@@ -3,7 +3,6 @@ package com.codegym.md4_webshop.controller;
 import com.codegym.md4_webshop.dto.CustomerPayDTO;
 import com.codegym.md4_webshop.model.Orders;
 import com.codegym.md4_webshop.service.ICustomerService;
-import com.codegym.md4_webshop.service.IOrderProductService;
 import com.codegym.md4_webshop.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

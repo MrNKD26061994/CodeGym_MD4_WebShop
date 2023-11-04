@@ -5,7 +5,6 @@ import com.codegym.md4_webshop.repository.OrdersRepository;
 import com.codegym.md4_webshop.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -34,5 +33,6 @@ public class OrdersService implements IOrdersService {
     }
 
     @Override
-    public void remove(Long id) {}
+    public void remove(Long id) {
+    }
 }
