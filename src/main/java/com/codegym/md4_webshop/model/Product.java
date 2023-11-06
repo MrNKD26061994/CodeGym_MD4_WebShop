@@ -21,7 +21,7 @@ public class Product{
     private int quantity;
     private int discount;
     private String description;
-
+    private String gender;
     @ManyToOne
     private Category category;
 
