@@ -58,4 +58,22 @@ public class Product{
         this.company = company;
         this.user = user;
     }
+
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product(double price) {
+        this.price = price;
+    }
+
+    public Product(Category category) {
+        this.category = category;
+    }
+
+    public Product(String name, double price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }

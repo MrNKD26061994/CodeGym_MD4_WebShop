@@ -59,4 +59,9 @@ public class ProductService implements IProductService {
         return productIterable;
     }
 
+    @Override
+    public Iterable<Product> searchProductByName(String name) {
+        String newString = "%"+name+"%";
+        return productRepository.searchByName(newString);
+    }
 }

@@ -9,4 +9,6 @@ public interface IProductService extends IGeneralService<Product> {
     void reducePrice(Long Id, double price);
     Iterable<Product> searchByGender(String gender);
 
+    Iterable<Product> searchProductByName(String name);
+
 }

@@ -10,8 +10,8 @@ function header() {
                     <div class="col-sm-5 col-md-3">
                         <form action="#" class="search-wrap">
                             <div class="form-group">
-                                <input type="search" class="form-control search" placeholder="Search">
-                                <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                                <input id="mainSearch" type="search" class="form-control search" placeholder="Search" >
+                                <button onclick="searchProductByName()" class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -33,6 +33,8 @@ function header() {
                             <li><a onclick="ShowWomenOfProduct()">Women</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
+                            <li><a onclick="filter()">Filter</a></li>
+                            
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                         </ul>
                     </div>

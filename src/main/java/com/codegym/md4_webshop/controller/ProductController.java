@@ -60,4 +60,8 @@ public class ProductController {
     public ResponseEntity<Iterable<Product>> searchWomen() {
         return new ResponseEntity<>(productService.searchByGender("Nữ"), HttpStatus.OK);
     }
+    @PostMapping("productRepository")
+    public ResponseEntity<Iterable<Product>> searchProductByName(@RequestBody Product product) {
+        return new ResponseEntity<>(productService.searchProductByName(product.getName()), HttpStatus.OK);
+    }
 }

@@ -11,4 +11,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "select * from product where gender=?", nativeQuery = true)
     Iterable<Product> searchByGender(@Param("gender") String gender );
 
+    @Query(value = "select * from product where name like ?", nativeQuery = true)
+    Iterable<Product> searchByName(@Param("name") String name );
+
 }
