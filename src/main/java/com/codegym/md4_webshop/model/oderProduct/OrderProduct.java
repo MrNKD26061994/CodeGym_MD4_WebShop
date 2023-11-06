@@ -23,6 +23,7 @@ public class OrderProduct {
     private Product product;
 
     @ManyToOne
+<<<<<<< HEAD
     @JoinColumn(name = "order_id")
     @MapsId("orderID")
 <<<<<<< HEAD
@@ -30,6 +31,11 @@ public class OrderProduct {
 =======
     private Orders orders;
 >>>>>>> 1abe4a048cbbd111dbca37fa8a2b8211758c6243
+=======
+    @JoinColumn(name = "orders_id")
+    @MapsId("ordersID")
+    private Orders orders;
+>>>>>>> 5484502c5ae5e679d4e1c218d70608a27bbd7adb
 
     private int count;
     private double price;

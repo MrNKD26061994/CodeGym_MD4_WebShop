@@ -31,6 +31,7 @@ public class Product{
     @ManyToOne
     private User user;
 
+<<<<<<< HEAD
     public Product(Long id, double price) {
         this.id = id;
         this.price = price;
@@ -58,4 +59,6 @@ public class Product{
         this.company = company;
         this.user = user;
     }
+=======
+>>>>>>> 5484502c5ae5e679d4e1c218d70608a27bbd7adb
 }
