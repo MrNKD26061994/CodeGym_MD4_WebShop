@@ -27,6 +27,7 @@ public class OrderProduct {
     @JoinColumn(name = "order_id")
     @MapsId("orderID")
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Orders order;
 =======
     private Orders orders;
@@ -36,6 +37,9 @@ public class OrderProduct {
     @MapsId("ordersID")
     private Orders orders;
 >>>>>>> 5484502c5ae5e679d4e1c218d70608a27bbd7adb
+=======
+    private Orders order;
+>>>>>>> 51ffc333e05494a32fb8826e33147bb2f19c76c2
 
     private int count;
     private double price;

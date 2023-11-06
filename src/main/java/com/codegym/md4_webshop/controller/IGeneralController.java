@@ -33,7 +33,10 @@ public interface IGeneralController<T> {
     ResponseEntity<T> update(T t);
 
     ResponseEntity<T> delete(Long id);
+<<<<<<< HEAD
 
     ResponseEntity<T> findById(Long id);
+=======
+>>>>>>> 51ffc333e05494a32fb8826e33147bb2f19c76c2
 }
 >>>>>>> 5484502c5ae5e679d4e1c218d70608a27bbd7adb
