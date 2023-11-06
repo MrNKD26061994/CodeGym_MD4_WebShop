@@ -18,13 +18,13 @@ public class ImageController implements IGeneralController<Image> {
     private final IImageService iImageService;
 
     @Autowired
-    public ImageController(IImageService iImageService) {
+    public ImageController (IImageService iImageService) {
         this.iImageService = iImageService;
     }
 
 
     @GetMapping
-    public ResponseEntity<Iterable<Image>> list() {
+    public ResponseEntity<Iterable<Image>> list ( ) {
         List<Image> images = (List<Image>) iImageService.findAll();
         if (images.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -34,7 +34,7 @@ public class ImageController implements IGeneralController<Image> {
 
     @Override
     @PostMapping
-    public ResponseEntity<Image> create(@RequestBody Image image) {
+    public ResponseEntity<Image> create (@RequestBody Image image) {
         Optional<Image> imageOptional = iImageService.findImageByImage(image.getImage());
         if (imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ public class ImageController implements IGeneralController<Image> {
 
     @Override
     @PutMapping
-    public ResponseEntity<Image> update(@RequestBody Image image) {
+    public ResponseEntity<Image> update (@RequestBody Image image) {
         Optional<Image> imageOptional = iImageService.findById(image.getId());
         if (!imageOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -53,13 +53,13 @@ public class ImageController implements IGeneralController<Image> {
     }
 
     @Override
-        @DeleteMapping
-        public ResponseEntity<Image> delete(@RequestBody Long id) {
-            Optional<Image> imageOptional = iImageService.findById(id);
-            if (!imageOptional.isPresent()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            iImageService.remove(imageOptional.get().getId());
-            return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping
+    public ResponseEntity<Image> delete (@RequestBody Long id) {
+        Optional<Image> imageOptional = iImageService.findById(id);
+        if (!imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        iImageService.remove(imageOptional.get().getId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
