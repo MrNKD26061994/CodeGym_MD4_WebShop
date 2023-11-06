@@ -34,17 +34,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Optional<Product> reduceQuantity(Long id, int quantity) {
+    public boolean reduceQuantity(Long id, int quantity) {
         Optional<Product> product = productRepository.findById(id);
         if(product.isPresent()){
             if(product.get().getQuantity()>quantity){
                 product.get().setQuantity(product.get().getQuantity()-quantity);
+                productRepository.save(product.get());
+                return true;
             } else {
-                return null;
+                return false;
             }
-        }
-        productRepository.save(product.get());
-        return product;
+        } return false;
     }
     @Override
     public void reducePrice(Long id, double price) {
