@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class CustomUserDetails implements UserDetails {
     private static final long serialVersionUID = 1L;
     private Long userId;
-    private String userName;
+    private String username;
     @JsonIgnore
     private String userPassword;
     private String email;
@@ -24,9 +24,9 @@ public class CustomUserDetails implements UserDetails {
     private int userStatus;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(Long userId, String userName, String userPassword, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(Long userId, String username, String userPassword, Collection<? extends GrantedAuthority> authorities) {
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.userPassword = userPassword;
         this.authorities = authorities;
     }
@@ -38,7 +38,7 @@ public class CustomUserDetails implements UserDetails {
                 .collect(Collectors.toList());
         return new CustomUserDetails(
                 user.getId(),
-                user.getName(),
+                user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
                 user.getPhone(),
@@ -54,7 +54,7 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override

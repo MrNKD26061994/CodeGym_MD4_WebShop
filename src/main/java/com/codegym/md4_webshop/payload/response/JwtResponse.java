@@ -8,24 +8,16 @@ import java.util.List;
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
-    private int userId;
-    private String userName;
+    private Long userId;
+    private String username;
     private String email;
     private String phone;
     private List<String> listRole;
 
-    public JwtResponse(String token, int userId, String userName, String email, String phone, List<String> listRole) {
+    public JwtResponse(String token, Long userId, String username, String email, String phone, List<String> listRole) {
         this.token = token;
         this.userId = userId;
-        this.userName = userName;
-        this.email = email;
-        this.phone = phone;
-        this.listRole = listRole;
-    }
-
-    public JwtResponse(String token, String userName, String email, String phone, List<String> listRole) {
-        this.token = token;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.listRole = listRole;
@@ -39,14 +31,13 @@ public class JwtResponse {
         this.type = type;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }

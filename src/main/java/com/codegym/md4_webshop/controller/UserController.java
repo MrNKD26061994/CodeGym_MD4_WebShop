@@ -118,6 +118,7 @@ public class UserController {
                 .map(item -> item.getAuthority()).collect(Collectors.toList());
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
+                customUserDetails.getUserId(),
                 customUserDetails.getUsername(),
                 customUserDetails.getEmail(),
                 customUserDetails.getPhone(),
