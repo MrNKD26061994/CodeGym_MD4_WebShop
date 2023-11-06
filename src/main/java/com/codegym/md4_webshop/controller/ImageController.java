@@ -22,7 +22,7 @@ public class ImageController implements IGeneralController<Image> {
         this.iImageService = iImageService;
     }
 
-    @Override
+
     @GetMapping
     public ResponseEntity<Iterable<Image>> list() {
         List<Image> images = (List<Image>) iImageService.findAll();
