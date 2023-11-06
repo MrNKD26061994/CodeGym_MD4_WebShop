@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/cart")
-public class CartController {
+public class   CartController {
 
 
 
