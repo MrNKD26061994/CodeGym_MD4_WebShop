@@ -1,15 +1,12 @@
 package com.codegym.md4_webshop.controller;
 
-import com.codegym.md4_webshop.model.User;
-import com.codegym.md4_webshop.model.cart.Cart;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/user")
+<<<<<<< HEAD
 public class UserController implements IGeneralController<User> {
     @Override
     public Iterable<User> list() {
@@ -30,4 +27,9 @@ public class UserController implements IGeneralController<User> {
     public ResponseEntity<User> delete() {
         return null;
     }
+=======
+public class UserController{
+
+>>>>>>> 2377016aca4b82acd0a4072540d3188c7163e8af
+}
 }
