@@ -14,7 +14,7 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/category")
-public class CategoryController implements IGeneralController<Category> {
+public class CategoryController implements ICategoryService<Category> {
     @Autowired
     private ICategoryService categoryService;
 
