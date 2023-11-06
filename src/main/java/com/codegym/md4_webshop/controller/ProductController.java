@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/products")
+@RequestMapping("/api/products")
 public class ProductController {
     @Autowired
     private IProductService productService;
@@ -49,5 +49,15 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable ("id") Long id){
         productService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/men")
+    public ResponseEntity<Iterable<Product>> searchMen() {
+        return new ResponseEntity<>(productService.searchByGender("Nam"), HttpStatus.OK);
+    }
+
+    @GetMapping("/women")
+    public ResponseEntity<Iterable<Product>> searchWomen() {
+        return new ResponseEntity<>(productService.searchByGender("Nữ"), HttpStatus.OK);
     }
 }

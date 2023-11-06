@@ -52,4 +52,11 @@ public class ProductService implements IProductService {
         product.get().setPrice(price);
         productRepository.save(product.get());
     }
+
+    @Override
+    public Iterable<Product> searchByGender(String gender) {
+        Iterable<Product> productIterable = productRepository.searchByGender(gender);
+        return productIterable;
+    }
+
 }

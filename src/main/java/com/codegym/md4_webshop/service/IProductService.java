@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface IProductService extends IGeneralService<Product> {
     boolean reduceQuantity(Long Id, int quantity);
     void reducePrice(Long Id, double price);
+    Iterable<Product> searchByGender(String gender);
 
 }
