@@ -105,16 +105,8 @@ function register() {
         email: email
     }
     axios.post('http://localhost:8080/users/register', user).then((response) => {
-        alert("đăng nhập thành công")
-
-        const role = response.data.listRole;
-        if (role === "ROLE_ADMIN") {
-            console.log("admin")
-        } else if (role === "ROLE_USER") {
-            console.log("user")
-        } else {
-            console.log("moderator")
-        }
+        alert("đăng ký thành công")
+        login();
     })
     event.preventDefault()
 }

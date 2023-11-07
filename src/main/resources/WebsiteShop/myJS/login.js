@@ -1,4 +1,5 @@
 hide()
+
 function loginForm() {
 
     tempContainer();
@@ -6,7 +7,6 @@ function loginForm() {
     function tempContainer() {
         document.getElementById("container").innerHTML = loginContainer();
     }
-
     function loginContainer() {
         return `
             <div id="loginContainer" xmlns="http://www.w3.org/1999/html">
@@ -56,13 +56,11 @@ function loginForm() {
 function login() {
     let userName = document.getElementById("userName").value;
     let passWord = document.getElementById("password").value;
-    console.log("xxxxxxxxxx")
     let user = {
         userName: userName,
         password: passWord
     }
     axios.post('http://localhost:8080/users/login', user).then((response) => {
-        alert("đăng nhập thành công")
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.username)
         localStorage.setItem("id", response.data.userId)
@@ -70,31 +68,35 @@ function login() {
         console.log(response.data)
         if (role === "ROLE_ADMIN") {
             console.log("admin")
+            location.reload();
         } else if (role === "ROLE_USER") {
             console.log("user")
+            location.reload();
         } else {
             console.log("moderator")
-            register();
+            location.reload();
         }
-
     })
 }
 
 function hide() {
     let token = localStorage.getItem("token")
-    console.log(token)
-    if ( token !== null) {
+    if (token !== null) {
         document.getElementById("register").style.display = "none"
         document.getElementById("login").style.display = "none"
+        document.getElementById("logout").style.display = "block"
+        document.getElementById("username").style.display = "block"
     }
-    if ( token === null) {
+    if (token === null) {
         document.getElementById("register").style.display = "block"
         document.getElementById("login").style.display = "block"
+        document.getElementById("logout").style.display = "none"
+        document.getElementById("username").style.display = "none"
     }
 }
-function getUserId() {
-    return localStorage.getItem("id");
-}
-function df(){
-    console.log(getUserId())
+
+function logout() {
+    localStorage.clear();
+    location.reload();
+    window.location.href("index.html")
 }

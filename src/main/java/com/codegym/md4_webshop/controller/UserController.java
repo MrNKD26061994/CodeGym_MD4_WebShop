@@ -45,6 +45,8 @@ public class UserController {
     @Autowired
     private PasswordEncoder encoder;
 
+
+
     @GetMapping
     public ResponseEntity<Iterable<User>> list() {
         List<User> userList = (List<User>) userService.findAll();
@@ -54,7 +56,7 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-//    @GetMapping
+    //    @GetMapping
 //    public ResponseEntity<Iterable<User>> showAllUser() {
 //        Iterable<User> users = userService.findAll();
 //        return new ResponseEntity<>(users, HttpStatus.OK);
@@ -115,7 +117,7 @@ public class UserController {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         String jwt = jwtTokenProvider.generateToken(authentication);
         List<String> listRole = customUserDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority()).collect(Collectors.toList());
+                .map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         return ResponseEntity.ok(new JwtResponse(
                 jwt,
                 customUserDetails.getUserId(),
@@ -124,5 +126,52 @@ public class UserController {
                 customUserDetails.getPhone(),
                 listRole)
         );
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+
+        Optional<User> imageOptional = userService.findById(user.getId());
+        if (!imageOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        user.setId(user.getId());
+        user.setPassword(imageOptional.get().getPassword());
+        user.setUsername(imageOptional.get().getUsername());
+        userService.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+//@PutMapping("/edit")
+//public ResponseEntity<User> updateUser(@RequestBody User user) {
+//
+//    // Get the old user object
+//    Optional<User> oldUserOptional = userService.findById(user.getId());
+//    if (!oldUserOptional.isPresent()) {
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+//
+//    // Create a new user object to store the updated values
+//    User newUser = new User();
+//    newUser.setId(user.getId());
+//
+//    // Copy the unchanged values from the old user object to the new user object
+//    newUser.setName(oldUserOptional.get().getName());
+//    newUser.setEmail(oldUserOptional.get().getEmail());
+//
+//    // Update the changed values of the new user object
+//    if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+//        newUser.setPassword(user.getPassword());
+//    }
+//
+//    // Save the updated user object
+//    userService.save(newUser);
+//
+//    // Return the updated user object
+//    return new ResponseEntity<>( HttpStatus.OK);
+//}
+    @GetMapping("{id}")
+    public ResponseEntity<User> findUserById(@PathVariable Long id) {
+        Optional<User> imageOptional = userService.findById(id);
+        return imageOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

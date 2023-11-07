@@ -17,7 +17,7 @@ function header() {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 text-left menu-1">
+                    <div class="col-sm-12 text-left menu-1 align-items-center">
                         <ul>
                             <li class="active"><a href="index.html">Home</a></li>
                             <li class="has-dropdown">
@@ -34,9 +34,15 @@ function header() {
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
-                            <li class="cart"><a id="register" onclick="registerForm()">Register</a></li>
-                            <li class="cart"><a id="login" onclick="loginForm()">Login</a></li>
-                             <li class="cart"><a id="logout" onclick="loginForm()">Login</a></li>
+                            <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
+                            <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
+   <li class="cart" id="username">
+    <a onclick="userInfo()" ><i class="fas fa-fw fa-user"></i>
+    </a>
+</li>
+                            <li class="cart" id="logout"><a onclick="logout()"><i class="icon-log-out"></i>
+                          Logout
+                            </a></li>
                         </ul>
                     </div>
                 </div>
