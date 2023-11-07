@@ -1,6 +1,7 @@
 package com.codegym.md4_webshop.service.impl;
 
 import com.codegym.md4_webshop.model.Product;
+import com.codegym.md4_webshop.model.oderProduct.SearchOBJ;
 import com.codegym.md4_webshop.repository.ProductRepository;
 import com.codegym.md4_webshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +31,24 @@ public class ProductService implements IProductService {
 
     @Override
     public void remove(Long id) {
-    productRepository.delete(productRepository.findById(id).get());
+        productRepository.delete(productRepository.findById(id).get());
     }
 
     @Override
     public boolean reduceQuantity(Long id, int quantity) {
         Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
-            if(product.get().getQuantity()>quantity){
-                product.get().setQuantity(product.get().getQuantity()-quantity);
+        if (product.isPresent()) {
+            if (product.get().getQuantity() > quantity) {
+                product.get().setQuantity(product.get().getQuantity() - quantity);
                 productRepository.save(product.get());
                 return true;
             } else {
                 return false;
             }
-        } return false;
+        }
+        return false;
     }
+
     @Override
     public void reducePrice(Long id, double price) {
         Optional<Product> product = productRepository.findById(id);
@@ -61,7 +64,32 @@ public class ProductService implements IProductService {
 
     @Override
     public Iterable<Product> searchProductByName(String name) {
-        String newString = "%"+name+"%";
-        return productRepository.searchByName(newString);
+        String newString = "%" + name + "%";
+        return productRepository.search3(newString);
+    }
+
+    @Override
+    public Iterable<Product> filter(SearchOBJ searchOBJ) {
+        Double num1 = searchOBJ.getNum1();
+        Double num2 = searchOBJ.getNum2();
+        Long id = searchOBJ.getId();
+        String name = searchOBJ.getName();
+        String searchName = "%" + searchOBJ.getName() + "%";
+
+        if (num1 != null && num2 != null && id != null & name != null) {
+            return productRepository.search1and2and3(num1, num2, id, searchName);
+        } else if (num1 != null && num2 != null && id != null & name == null) {
+            return productRepository.search1and2(num1, num2, id);
+        } else if (num1 != null && num2 != null && id == null & name != null) {
+            return productRepository.search1and3(num1, num2, searchName);
+        } else if (num1 != null && num2 != null && id == null & name == null) {
+            return productRepository.Search1(num1, num2);
+        } else if (num1 == null && num2 == null && id != null & name == null) {
+            return productRepository.search2(id);
+        } else if (num1 == null && num2 == null && id != null & name != null) {
+            return productRepository.search2and3(id, searchName);
+        } else {
+            return productRepository.search3(searchName);
+        }
     }
 }
