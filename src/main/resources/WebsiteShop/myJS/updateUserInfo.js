@@ -1,4 +1,4 @@
-getUserName()
+getUserName();
 //Cấu hình firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBYwhcJE-WrIAAePLLEoFJ33ba1D2P38zc",
@@ -23,126 +23,184 @@ function userInfo() {
 
     function userContainer() {
         return `
-<div class="container">
-<div class="row">
-\t\t<div class="col-12">
-\t\t\t<!-- Page title -->
-\t\t\t<div class="my-5">
-\t\t\t\t<h3>My Profile</h3>
-\t\t\t\t<hr>
-\t\t\t</div>
-\t\t\t<!-- Form START -->
-\t\t\t<form class="file-upload">
-\t\t\t\t<div class="row mb-5 gx-5">
-\t\t\t\t\t<!-- Contact detail -->
-                                            <div class="w-100"></div>
-\t\t\t\t\t<div class="col-xxl-8 mb-5 mb-xxl-0">
-\t\t\t\t\t\t<div class="bg-secondary-soft px-4 py-5 rounded">
-\t\t\t\t\t\t\t<div class="row g-3">
-\t\t\t\t\t\t\t\t<h4 class="mb-4 mt-0">Contact detail</h4>
-\t\t\t\t\t\t\t\t<!-- First Name -->
-                                            <div class="w-100"></div>
-\t\t\t\t\t\t\t\t<div class="col-md-6">
-\t\t\t\t\t\t\t\t\t<label class="form-label">Full Name *</label>
-\t\t\t\t\t\t\t\t\t<input type="text" class="form-control" placeholder="" aria-label="First name" id="name">
-\t\t\t\t\t\t\t\t</div>
-                                            <div class="w-100"></div>
-\t\t\t\t\t\t\t\t<!-- Phone number -->
-\t\t\t\t\t\t\t\t<div class="col-md-6">
-\t\t\t\t\t\t\t\t\t<label class="form-label">Phone number *</label>
-\t\t\t\t\t\t\t\t\t<input type="text" class="form-control" placeholder="" aria-label="Phone number" id="phone">
-\t\t\t\t\t\t\t\t</div>
-                                            <div class="w-100"></div>
-                                            \t\t\t\t\t\t\t\t<div class="col-md-6">
-\t\t\t\t\t\t\t\t\t<label class="form-label">Birthday</label>
-\t\t\t\t\t\t\t\t\t<input type="date" class="form-control" placeholder="" aria-label="Phone number" id="birthday">
-\t\t\t\t\t\t\t\t</div>
-                                            <div class="w-100"></div>
-\t\t\t\t\t\t\t\t<!-- Email -->
-\t\t\t\t\t\t\t\t<div class="col-md-6">
-\t\t\t\t\t\t\t\t\t<label for="inputEmail4" class="form-label">Email *</label>
-\t\t\t\t\t\t\t\t\t<input type="email" class="form-control" id="email" value="example@homerealty.com">
-\t\t\t\t\t\t\t\t</div>
-<div class="w-100"></div>
- <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Gender</option>
-        <option >Male</option>
-              <option>Female</option>
-      </select>
+    <div class="container justify-content-md-center">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex">
+                    <!-- Page title -->
+                    <div class="col-6">
+                        <h3>My Profile</h3>
+                        <hr>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="btn btn-primary" onclick="changePassForm()">Change password</h3>
+                        <hr>
+                    </div>
+                </div>
+                <!-- Form START -->
+                <form class="file-upload" enctype="multipart/form-data">
+                    <div class="row mb-5 gx-5">
+                        <!-- Contact detail -->
+                        <div class="w-100"></div>
+                        <div class="col-xxl-8 mb-5 mb-xxl-0">
+                            <div class="bg-secondary-soft px-4 py-5 rounded">
+                                <div class="row g-3">
+                                    <h4 class="mb-4 mt-0">Contact detail</h4>
+                                    <!-- First Name -->
+                                    <div class="w-100"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Full Name *</label>
+                                        <input type="text" class="form-control" placeholder="" aria-label="First name" id="name">
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <!-- Phone number -->
+                                    <div class="col-md-6">
+                                        <label class="form-label">Phone number *</label>
+                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="phone">
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Birthday</label>
+                                        <input type="date" class="form-control" placeholder="" aria-label="Phone number" id="birthday">
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <!-- Email -->
+                                    <div class="col-md-6">
+                                        <label for="inputEmail4" class="form-label">Email *</label>
+                                        <input type="email" class="form-control" id="email" value="example@homerealty.com">
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">State</label>
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Gender</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="w-100"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="address">
+                                    </div>
+                                </div> <!-- Row END -->
+                            </div>
+                        </div>
+                        <div class="square position-relative display-2 mb-3"></div>
+                        <!-- Upload profile -->
+                        <div class="col-xxl-4">
+                            <div class="bg-secondary-soft px-4 py-5 rounded">
+                                <div class="row g-3">
+                                    <h4 class="mb-4 mt-0">Upload your profile photo</h4>
+                                    <div class="text-center">
+                                        <!-- Image display -->
+                                        <img id="profileImage" src="" alt="Profile Image" style="max-width: 100%; max-height: 200px;">
+                                        <!-- Image upload -->
+                                        <div class="square position-relative display-2 mb-3">
+                                        </div>
+                                        <!-- Button -->
+                                                                            <div class="w-100"></div>
+                                        <input type="file" id="customFile" name="file" hidden="" onchange="displayImage(this)">
+                                        <label class="btn btn-success-soft btn-block" for="customFile">Upload</label>
+                                        <button type="button" class="btn btn-danger-soft" onclick="removeImage()">Remove</button>
+                                        <!-- Content -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Row END -->
+                    <!-- Social media detail -->
+                    <div class="row mb-5 gx-5">
+                        <div class="col-xxl-6 mb-5 mb-xxl-0">
+                            <div class="bg-secondary-soft px-4 py-5 rounded">
+                                <div class="row g-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Row END -->
+                <!-- button -->
+                <div class="gap-3 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="editInfo()">Update profile</button>
+                </div>
+            </form> <!-- Form END -->
+        </div>
     </div>
-    <div class="w-100"></div>
-    \t\t\t\t\t\t\t\t<div class="col-md-6">
-\t\t\t\t\t\t\t\t\t<label class="form-label">Address</label>
-\t\t\t\t\t\t\t\t\t<input type="text" class="form-control" placeholder="" aria-label="Phone number" id="address">
-\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t</div> <!-- Row END -->
-\t\t\t\t\t\t</div>
-\t\t\t\t\t</div>
-\t\t\t\t\t<!-- Upload profile -->
-\t\t\t\t\t<div class="col-xxl-4">
-\t\t\t\t\t\t\t\t\t\t</i>
-\t\t\t\t\t\t<div class="bg-secondary-soft px-4 py-5 rounded">
-\t\t\t\t\t\t\t<div class="row g-3">
-\t\t\t\t\t\t\t\t<h4 class="mb-4 mt-0">Upload your profile photo</h4>
-\t\t\t\t\t\t\t\t<div class="text-center">
-\t\t\t\t\t\t\t\t\t<!-- Image upload -->
-\t\t\t\t\t\t\t\t\t<div class="square position-relative display-2 mb-3">
-\t\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t\t\t<!-- Button -->
-\t\t\t\t\t\t\t\t\t<input type="file" id="customFile" name="file" hidden="">
-\t\t\t\t\t\t\t\t\t<label class="btn btn-success-soft btn-block" for="customFile">Upload</label>
-\t\t\t\t\t\t\t\t\t<button type="button" class="btn btn-danger-soft">Remove</button>
-\t\t\t\t\t\t\t\t\t<!-- Content -->
-\t\t\t\t\t\t\t\t\t<p class="text-muted mt-3 mb-0"><span class="me-1">Note:</span>Minimum size 300px x 300px</p>
-\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t</div>
-\t\t\t\t\t</div>
-\t\t\t\t</div> <!-- Row END -->
+</div>
+`;
 
-\t\t\t\t<!-- Social media detail -->
-\t\t\t\t<div class="row mb-5 gx-5">
-\t\t\t\t\t<div class="col-xxl-6 mb-5 mb-xxl-0">
+    }
+}
+
+// JavaScript function to display the uploaded image
+function displayImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var profileImage = document.getElementById('profileImage');
+            profileImage.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// JavaScript function to remove the displayed image
+function removeImage() {
+    var profileImage = document.getElementById('profileImage');
+    profileImage.src = '';
+}
+
+function changePassForm() {
+
+    tempContainer();
+
+    function tempContainer() {
+        document.getElementById("container").innerHTML = changePassContainer();
+    }
+
+    function changePassContainer() {
+        return `
+<div class="row">
+<div class="col-6"></div>
+<div class="col-6">
+\t\t\t\t<h3 class="btn btn-primary" onclick="userInfo()">My Profile</h3>
+</div>
+</div>
+
+\t\t\t\t\t<!-- change password -->
+\t\t\t\t\t<div class="col-xxl-6">
 \t\t\t\t\t\t<div class="bg-secondary-soft px-4 py-5 rounded">
 \t\t\t\t\t\t\t<div class="row g-3">
-\t\t\t\t\t\t</div>
-\t\t\t\t\t</div>
-<!--\t\t\t\t\t&lt;!&ndash; change password &ndash;&gt;-->
-<!--\t\t\t\t\t<div class="col-xxl-6">-->
-<!--\t\t\t\t\t\t<div class="bg-secondary-soft px-4 py-5 rounded">-->
-<!--\t\t\t\t\t\t\t<div class="row g-3">-->
-<!--\t\t\t\t\t\t\t\t<h4 class="my-4">Change Password</h4>-->
-<!--\t\t\t\t\t\t\t\t&lt;!&ndash; Old password &ndash;&gt;-->
-<!--\t\t\t\t\t\t\t\t<div class="col-md-6">-->
-<!--\t\t\t\t\t\t\t\t\t<label for="exampleInputPassword1" class="form-label">Old password *</label>-->
-<!--\t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword1">-->
-<!--\t\t\t\t\t\t\t\t</div>-->
-<!--\t\t\t\t\t\t\t\t&lt;!&ndash; New password &ndash;&gt;-->
-<!--\t\t\t\t\t\t\t\t<div class="col-md-6">-->
-<!--\t\t\t\t\t\t\t\t\t<label for="exampleInputPassword2" class="form-label">New password *</label>-->
-<!--\t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword2">-->
-<!--\t\t\t\t\t\t\t\t</div>-->
-<!--\t\t\t\t\t\t\t\t&lt;!&ndash; Confirm password &ndash;&gt;-->
-<!--\t\t\t\t\t\t\t\t<div class="col-md-12">-->
-<!--\t\t\t\t\t\t\t\t\t<label for="exampleInputPassword3" class="form-label">Confirm Password *</label>-->
-<!--\t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword3">-->
-<!--\t\t\t\t\t\t\t\t</div>-->
-\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t</div>
-\t\t\t\t\t</div>
-\t\t\t\t</div> <!-- Row END -->
-\t\t\t\t<!-- button -->
-\t\t\t\t<div class="gap-3 d-md-flex justify-content-md-end text-center">
-\t\t\t\t\t<button type="button" class="btn btn-danger btn-lg" style="text-align: center">Delete profile</button>
-\t\t\t\t\t<button type="button" class="btn btn-primary btn-lg" onclick="editInfo()">Update profile</button>
-\t\t\t\t</div>
-\t\t\t</form> <!-- Form END -->
-\t\t</div>
-\t</div>
-\t</div>
+\t\t\t\t\t\t\t\t<h4 class="my-4">Change Password</h4>
+ <div class="w-100"></div>
+ <div class="w-100"></div>
+\t\t\t\t\t\t\t\t<!-- New password -->
+\t\t\t\t\t\t\t\t<div class="col-md-6">
+\t\t\t\t\t\t\t\t\t<label for="exampleInputPassword2" class="form-label">New password *</label>
+\t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword2">
+\t\t\t\t\t\t\t\t</div>
+ <div class="w-100"></div>
+\t\t\t\t\t\t\t\t<!-- Confirm password -->
+\t\t\t\t\t\t\t\t<div class="col-md-12">
+\t\t\t\t\t\t\t\t\t<label for="exampleInputPassword3" class="form-label">Confirm Password *</label>
+\t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword3">
+\t\t\t\t\t\t\t\t</div>
         `;
+    }
+}
+
+function changePass() {
+    let newPassword = document.getElementById("exampleInputPassword2")
+    let confirmNewPassword = document.getElementById("exampleInputPassword3")
+    if (newPassword === confirmNewPassword) {
+        let data = {
+            id: localStorage.getItem("id"), pass: document.getElementById("exampleInputPassword3").value
+        }
+        axios.put('http://localhost:8080/users/edit', data).then(() => {
+            alert("đổi mật khẩu thành công")
+        });
+    } else {
+        alert("Nhập lại mật khẩu chưa trùng khớp");
     }
 }
 
@@ -156,9 +214,16 @@ function getUserName() {
             const username = response.data.username;
             console.log(username);
             document.getElementById("username-content").innerHTML = username;
+            document.getElementById("userImg").innerHTML = `<img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
+            // Hiển thị ảnh người dùng
+            console.log(response.data.image)
+            if (userImage) {
+
+            }
         }
     });
 }
+
 function editInfo() {
     const fileInput = document.getElementById("customFile");
     // Lấy file hình ảnh từ input
@@ -166,7 +231,7 @@ function editInfo() {
 
     // Tạo tham chiếu đến nơi bạn muốn lưu trữ ảnh trong Storage
     const storageRef = storage.ref("kien/" + file.name);
-let gender;
+    let gender;
     // Tải file lên Firebase Storage
     storageRef.put(file).then((snapshot) => {
         console.log("Uploaded a file!");
@@ -177,11 +242,10 @@ let gender;
             let data = {
                 id: localStorage.getItem("id"),
                 name: document.getElementById('name').value,
-                address:document.getElementById('address').value,
+                address: document.getElementById('address').value,
                 phone: document.getElementById('phone').value,
                 email: document.getElementById('email').value,
-                // birthday : document.getElementById('birthday').value,
-                // gender : gender,
+                birthday: document.getElementById('birthday').value, // gender : gender,
                 image: url
             }
             console.log(data)
@@ -191,3 +255,4 @@ let gender;
         });
     });
 }
+

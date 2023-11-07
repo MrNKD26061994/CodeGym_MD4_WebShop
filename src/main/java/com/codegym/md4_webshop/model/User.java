@@ -33,10 +33,5 @@ public class User extends BaseModel {
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> advertisementSet = new HashSet<>();
-    public Set<Role> getRoles() {
-        return advertisementSet;
-    }
-    public void setRoles(Set<Role> roles) {
-        this.advertisementSet = roles;
-    }
+
 }

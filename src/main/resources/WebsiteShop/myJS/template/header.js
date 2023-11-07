@@ -36,8 +36,10 @@ function header() {
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
                             <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
+     <li class="cart" id="userImg" onload="getUserName()">
+</li>
    <li class="cart" id="username">
-    <a onclick="userInfo()" ><i class="fas fa-fw fa-user"></i>
+    <a id="username-content" onclick="userInfo()" >
     </a>
 </li>
                             <li class="cart" id="logout"><a onclick="logout()"><i class="icon-log-out"></i>

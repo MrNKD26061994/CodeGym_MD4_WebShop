@@ -1,4 +1,4 @@
-hide()
+hide();
 
 function loginForm() {
 
@@ -35,7 +35,7 @@ function loginForm() {
                                         <div class="w-100"></div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <button type="submit" value="Login" class="btn btn-primary" onclick="login()">
+                                                <button type="submit" value="LOGIN" class="btn btn-primary" onclick="login()">LOGIN
                                             </div>
                                         </div>
                                     </div>
@@ -65,16 +65,19 @@ function login() {
         localStorage.setItem("userName", response.data.username)
         localStorage.setItem("id", response.data.userId)
         const role = response.data.listRole;
-        console.log(response.data)
-        if (role === "ROLE_ADMIN") {
+        console.log(response.data.listRole)
+        if (role[0] === "ROLE_ADMIN") {
             console.log("admin")
             location.reload();
-        } else if (role === "ROLE_USER") {
+        } else if (role[0] === "ROLE_USER") {
             console.log("user")
             location.reload();
-        } else {
+        } else if (role[0] === "ROLE_MODERATOR"){
             console.log("moderator")
             location.reload();
+        }
+        else {
+            alert("Sai tài khoản hoặc mật khẩu")
         }
     })
 }
@@ -86,12 +89,14 @@ function hide() {
         document.getElementById("login").style.display = "none"
         document.getElementById("logout").style.display = "block"
         document.getElementById("username").style.display = "block"
+        document.getElementById("userImg").style.display = "block"
     }
     if (token === null) {
         document.getElementById("register").style.display = "block"
         document.getElementById("login").style.display = "block"
         document.getElementById("logout").style.display = "none"
         document.getElementById("username").style.display = "none"
+        document.getElementById("userImg").style.display = "none"
     }
 }
 

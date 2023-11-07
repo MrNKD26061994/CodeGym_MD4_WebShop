@@ -91,15 +91,4 @@ public class UserService implements IUserService {
     public boolean isCorrectConfirmPassword(User user) {
         return false;
     }
-    public User updateUser (User user_new) {
-        User user = findById(user_new.getId()).get();
-
-        if (user_new.getPassword().isEmpty()) {
-            user_new.setPassword(user.getPassword());
-        }
-        if (user.getUsername().isEmpty()) {
-            user_new.setUsername(user.getUsername());
-        }
-        return user_new;
-    }
 }

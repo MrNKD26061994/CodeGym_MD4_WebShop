@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Getter
 public class SignupRequest {
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private String phone;
@@ -19,13 +19,10 @@ public class SignupRequest {
     private Set<String> listRole;
     private String address;
 
-    public SignupRequest(String userName, String password, String email, String phone, Set<String> listRole) {
-        this.userName = userName;
+    public SignupRequest(String userName, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
-        this.phone = phone;
-        this.listRole = listRole;
-        this.userStatus = 1;
     }
 
     public void setAddress(String address) {
@@ -33,7 +30,7 @@ public class SignupRequest {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = username;
     }
 
     public void setPassword(String password) {

@@ -12,13 +12,11 @@ import com.codegym.md4_webshop.model.CustomUserDetails;
 import com.codegym.md4_webshop.service.impl.RoleService;
 import com.codegym.md4_webshop.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,7 +33,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
     @Autowired
@@ -45,6 +43,9 @@ public class UserController {
     @Autowired
     private PasswordEncoder encoder;
 
+    public UserController(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
 
     @GetMapping
@@ -56,12 +57,6 @@ public class UserController {
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
-    //    @GetMapping
-//    public ResponseEntity<Iterable<User>> showAllUser() {
-//        Iterable<User> users = userService.findAll();
-//        return new ResponseEntity<>(users, HttpStatus.OK);
-//    }
-//
     @GetMapping("/admin")
     public ResponseEntity<Iterable<User>> showAllUserByAdmin() {
         Iterable<User> users = userService.findAll();
@@ -70,11 +65,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest) {
-        if (userService.existsByUsername(signupRequest.getUserName())) {
+        if (userService.existsByUsername(signupRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: User is already"));
         }
         User user = new User();
-        user.setUsername(signupRequest.getUserName());
+        user.setUsername(signupRequest.getUsername());
         user.setPassword(encoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());
         user.setPhone(signupRequest.getPhone());
@@ -96,7 +91,7 @@ public class UserController {
                             .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
                     listRole.add(modRole);
                 }
-                if (role.equals("user")) {
+               else  {
                     Role userRole = roleService.findByRoleName(ERole.ROLE_USER)
                             .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
                     listRole.add(userRole);
@@ -127,48 +122,52 @@ public class UserController {
                 listRole)
         );
     }
-
     @PutMapping("/edit")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
-
         Optional<User> imageOptional = userService.findById(user.getId());
-        if (!imageOptional.isPresent()) {
+        if (!imageOptional.isPresent() ) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        user.setId(user.getId());
-        user.setPassword(imageOptional.get().getPassword());
-        user.setUsername(imageOptional.get().getUsername());
+        if (user.getAddress() == null) {
+            user.setAddress(imageOptional.get().getAddress());
+        }
+        if (user.getImage() == null) {
+            user.setImage(imageOptional.get().getImage());
+        }
+        if (user.getBirthday() == null) {
+            user.setBirthday(null);
+        }
+        if (user.getEmail() == null) {
+            user.setEmail(imageOptional.get().getEmail());
+        }
+        if (user.getGender() == 0) {
+            user.setGender(imageOptional.get().getGender());
+        }
+        if (user.getName()== null) {
+            user.setName(imageOptional.get().getName());
+
+        }
+        if (user.getPhone()== null) {
+            user.setPhone(imageOptional.get().getPhone());
+        }
+        if (user.getUsername()== null) {
+            user.setUsername(imageOptional.get().getUsername());
+        }
+        if (user.getAdvertisementSet().isEmpty()) {
+            user.setAdvertisementSet(imageOptional.get().getAdvertisementSet());
+        }
+        if (user.getPassword() == null) {
+            user.setPassword(imageOptional.get().getPassword());
+        }
+        else  {
+            user.setPassword(encoder.encode(user.getPassword()));
+        }
+
+
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-//@PutMapping("/edit")
-//public ResponseEntity<User> updateUser(@RequestBody User user) {
-//
-//    // Get the old user object
-//    Optional<User> oldUserOptional = userService.findById(user.getId());
-//    if (!oldUserOptional.isPresent()) {
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//
-//    // Create a new user object to store the updated values
-//    User newUser = new User();
-//    newUser.setId(user.getId());
-//
-//    // Copy the unchanged values from the old user object to the new user object
-//    newUser.setName(oldUserOptional.get().getName());
-//    newUser.setEmail(oldUserOptional.get().getEmail());
-//
-//    // Update the changed values of the new user object
-//    if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-//        newUser.setPassword(user.getPassword());
-//    }
-//
-//    // Save the updated user object
-//    userService.save(newUser);
-//
-//    // Return the updated user object
-//    return new ResponseEntity<>( HttpStatus.OK);
-//}
+
     @GetMapping("{id}")
     public ResponseEntity<User> findUserById(@PathVariable Long id) {
         Optional<User> imageOptional = userService.findById(id);
