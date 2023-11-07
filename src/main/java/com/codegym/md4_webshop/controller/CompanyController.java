@@ -1,5 +1,6 @@
 package com.codegym.md4_webshop.controller;
 
+import com.codegym.md4_webshop.model.Category;
 import com.codegym.md4_webshop.model.Company;
 import com.codegym.md4_webshop.service.ICompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class CompanyController implements IGeneralController<Company> {
     @Autowired
     private ICompanyService companyService;
     @GetMapping
-    public ResponseEntity<Iterable<Company>> list() {
+    public ResponseEntity<Iterable<Category>> list() {
         List<Company> companyList = (List<Company>) companyService.findAll();
         if (companyList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -40,6 +41,11 @@ public class CompanyController implements IGeneralController<Company> {
         }
         companyService.save(company);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Company> delete ( ) {
+        return null;
     }
 
     @DeleteMapping("/{id}")

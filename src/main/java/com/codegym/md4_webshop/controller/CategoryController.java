@@ -44,6 +44,11 @@ public class CategoryController implements IGeneralController<Category> {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<Category> delete ( ) {
+        return null;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Category> delete(@PathVariable Long id) {
         Optional<Category> categoryOptional = categoryService.findById(id);
