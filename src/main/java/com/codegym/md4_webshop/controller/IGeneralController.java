@@ -10,6 +10,4 @@ public interface IGeneralController<T> {
     ResponseEntity<T> update(T t);
 
     ResponseEntity<T> delete(Long id);
-
-    ResponseEntity<T> findById(Long id);
 }
