@@ -19,8 +19,9 @@ function tempFooter() {
 function container() {
     return `
     <div id="container">
+        <div class="container">
         <div id="filter"></div>
-        <div id="ShowProducts" class="row row-pb-md" style="text-align: center; width: 90%; align-items: center" ></div>
+        <div id="ShowProducts" class="row row-pb-md"></div>
 
         <div class="colorlib-partner">
           <div class="container">
@@ -46,6 +47,7 @@ function container() {
                     <img src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template">
                 </div>
             </div>
+        </div>
         </div>
         </div>
     </div>

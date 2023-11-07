@@ -13,8 +13,8 @@ axios.get(url).then((data) => {
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
                         <span class="price">${product[i].price}</span>
-                        <button onclick= viewDetail(${product[i].id})>View detail</button>
-                        <button onclick=addToCart(${product[i].id})>Add to cart</button>
+                        <button class="btn btn-danger" onclick= viewDetail(${product[i].id})>View detail</button>
+                        <button class="btn btn-danger" onclick=addToCart(${product[i].id})>Add to cart</button>
   
                     </div>
                 </div>
@@ -41,8 +41,8 @@ function ShowMenOfProduct() {
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
                         <span class="price">${product[i].price}</span>
-                        <button onclick= viewDetail(${product[i].id})>View detail</button>
-                        <button onclick=addToCart(${product[i].id})>Add to cart</button>
+                        <button class="btn btn-danger" onclick= viewDetail(${product[i].id})>View detail</button>
+                        <button class="btn btn-danger" onclick=addToCart(${product[i].id})>Add to cart</button>
   
                     </div>
                 </div>
@@ -70,8 +70,8 @@ function ShowWomenOfProduct() {
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
                         <span class="price">${product[i].price}</span>
-                        <button onclick= viewDetail(${product[i].id})>View detail</button>
-                        <button onclick=addToCart(${product[i].id})>Add to cart</button>
+                        <button class="btn btn-danger" onclick= viewDetail(${product[i].id})>View detail</button>
+                        <button class="btn btn-danger" onclick=addToCart(${product[i].id})>Add to cart</button>
   
                     </div>
                 </div>
