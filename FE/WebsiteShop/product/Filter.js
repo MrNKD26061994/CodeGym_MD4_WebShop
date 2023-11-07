@@ -18,6 +18,7 @@ let content=`<table style="width: 100%; border: 1px solid; margin: 20px">
        
      </tr>
 </table>`
+    loadCategory();
     document.getElementById("filter").innerHTML=content;
 }
 
@@ -26,7 +27,19 @@ function filter(){
 }
 
 function loadCategory(){
-
+axios.get("http://localhost:8080/category").then((data)=>{
+    let category = data.data;
+    console.log("Day la"+category);
+    let content=`<option value=""></option>`;
+    for (let i = 0; i < category.length; i++) {
+        let id=category[i].id;
+        let name=category[i].name;
+        console.log(id);
+        console.log(name);
+        content+=`<option value="${id}">${name}</option>`
+    }
+    document.getElementById("category").innerHTML=content;
+})
 }
 
 function search(){

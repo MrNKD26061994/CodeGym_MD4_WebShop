@@ -70,8 +70,9 @@ public class ProductService implements IProductService {
 
     @Override
     public Iterable<Product> filter(SearchOBJ searchOBJ) {
-        Double num1 = searchOBJ.getNum1();
-        Double num2 = searchOBJ.getNum2();
+
+        Long num1 = searchOBJ.getNum1();
+        Long num2 = searchOBJ.getNum2();
         Long id = searchOBJ.getId();
         String name = searchOBJ.getName();
         String searchName = "%" + searchOBJ.getName() + "%";
