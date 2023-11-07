@@ -103,4 +103,9 @@ public class ProductService implements IProductService {
         Iterable<OrderProduct> orderProducts = reportRepository.reportByYear(searchOBJ.getNum1());
         return orderProducts;
     }
+    @Override
+    public Iterable<OrderProduct> reportByMonth(SearchOBJ searchOBJ) {
+        Iterable<OrderProduct> orderProducts = reportRepository.reportByMonth(searchOBJ.getNum1(), searchOBJ.getNum2());
+        return orderProducts;
+    }
 }

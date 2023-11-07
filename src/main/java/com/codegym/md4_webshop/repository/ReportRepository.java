@@ -11,4 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface ReportRepository extends JpaRepository<OrderProduct, Long> {
     @Query(value = "select * from product_order join orders on product_order.order_id = orders.id having year(orders.time)= ?;", nativeQuery = true)
     Iterable<OrderProduct> reportByYear(@Param("num1") Long num1 );
+
+    @Query(value = "select * from product_order join orders on product_order.order_id = orders.id having year(orders.time)= ? and month(orders.time) = ?;", nativeQuery = true)
+    Iterable<OrderProduct> reportByMonth(@Param("num1") Long num1,
+                                         @Param("num2")Long num2);
 }

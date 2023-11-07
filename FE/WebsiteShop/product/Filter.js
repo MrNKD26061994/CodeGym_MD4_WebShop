@@ -9,8 +9,8 @@ let content=`<div class="row">
     <tr>
         <td style="width: 40%" colspan="2" style="width: 30%">Price gape</td>
         <td style="width: 20%">Category</td>
-        <td style="width: 20%">Gender</td>
-        <td rowspan="2"><button onclick="search()">search</button> </td>
+        <td style="width: 20%">Product name</td>
+        <td rowspan="2"><button class="active" onclick="search()">search</button> </td>
      </tr>
       <tr>
         <td colspan="2"><input id="lowPrice" type="text" placeholder="nhập giá min"> <label> >>> </label> <input id="highPrice" type="text" placeholder="nhập giá max"></td>
