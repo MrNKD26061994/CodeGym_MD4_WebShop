@@ -1,7 +1,6 @@
 package com.codegym.md4_webshop.controller;
 
 import com.codegym.md4_webshop.model.Category;
-import com.codegym.md4_webshop.model.User;
 import com.codegym.md4_webshop.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
