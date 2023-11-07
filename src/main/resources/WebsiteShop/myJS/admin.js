@@ -9,7 +9,6 @@ function adminForm() {
 
                 const activeUsers = data.filter((user) => user.status === 0);
                 const disabledUsers = data.filter((user) => user.status === 1);
-
                 let str = `
                     <div class="colorlib-product">
                         <div class="container">
@@ -59,13 +58,14 @@ function adminForm() {
     function createProductCard(user, isDisabled) {
         const statusText = isDisabled ? "Disabled" : "Active";
         const actionText = isDisabled ? "Enable" : "Disable";
-
+console.log(user)
         return `
             <div class="col-lg-6 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
                         <img src="${user.image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
+                    <input type="hidden" id="id" value="${user.id}">
                     <div class="desc">
                         <h2><a href="#">${user.username}</a></h2>
                         <!--Modal: Login with Avatar Form-->
@@ -88,18 +88,18 @@ function adminForm() {
                   <label data-error="wrong" data-success="right" for="form29" class="ml-0">Full name</label>
           <input type="text" id="name" class="form-control form-control-sm validate ml-0" value="${user.name}">
         </div>
-        <div class="md-form ml-0 mr-0">
-                  <label data-error="wrong" data-success="right" for="form29" class="ml-0">Phone</label>
-          <input type="text" id="phone" class="form-control form-control-sm validate ml-0" value="${user.phone}">
-        </div>
-                <div class="md-form ml-0 mr-0">
-                          <label data-error="wrong" data-success="right" for="form29" class="ml-0">Email</label>
-          <input type="text" id="email" class="form-control form-control-sm validate ml-0">
+<div class="md-form ml-0 mr-0">
+    <label data-error="wrong" data-success="right" for="phone" class="ml-0">Phone</label>
+    <input type="tel" id="phone" class="form-control form-control-sm validate ml-0" value="${user.phone}" pattern="[0-9]{10}">
+</div>
 
-        </div>
+<div class="md-form ml-0 mr-0">
+    <label data-error="wrong" data-success="right" for="email" class="ml-0">Email</label>
+    <input type="email" id="email" class="form-control form-control-sm validate ml-0" value="${user.email}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" required>
+</div>
                 <div class="md-form ml-0 mr-0">
                           <label data-error="wrong" data-success="right" for="form29" class="ml-0">Address</label>
-          <input type="text" id="address" class="form-control form-control-sm validate ml-0">
+          <input type="text" id="address" class="form-control form-control-sm validate ml-0" value="${user.address}" >
         </div>
 <div class="md-form ml-0 mr-0">
     <label for="gender" class="ml-0">Gender</label>
@@ -110,7 +110,7 @@ function adminForm() {
 </div>
                       <div class="md-form ml-0 mr-0">
                                 <label data-error="wrong" data-success="right" for="form29" class="ml-0">User name</label>
-          <input value="${user.username}" type="text" id="form29" class="form-control form-control-sm validate ml-0">
+          <input type="text" id="username" class="form-control form-control-sm validate ml-0" value="${user.username}" >
 
         </div>
 <div class="text-center mt-4">
@@ -136,21 +136,39 @@ function adminForm() {
 }
 
 function confirmEdit() {
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const phonePattern = /[0-9]{10}/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    const isPhoneValid = phonePattern.test(phoneInput.value);
+    const isEmailValid = emailPattern.test(emailInput.value);
+
+    if (!isPhoneValid) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng 10 số.");
+        return;
+    }
+
+    if (!isEmailValid) {
+        alert("Email không hợp lệ. Vui lòng nhập đúng định dạng email.");
+        return;
+    }
+
     const confirmed = window.confirm("Bạn chắc chắn muốn thực hiện thay đổi?");
 
     if (confirmed) {
         let data = {
-            id: localStorage.getItem("id"),
+            id: document.getElementById('id').value,
             name: document.getElementById('name').value,
             address: document.getElementById('address').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value,
-            birthday: document.getElementById('birthday').value, // gender : gender,
-            image: url
+            phone: phoneInput.value,
+            email: emailInput.value,
+            gender: document.getElementById('gender').value,
+            username: document.getElementById("username").value
         }
-        console.log(data)
+        console.log(data);
         axios.put('http://localhost:8080/users/edit', data).then(() => {
-            alert("sửa thành công")
+            alert("Cập nhật thành công");
         });
     } else {
         adminForm();

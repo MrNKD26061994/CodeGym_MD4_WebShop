@@ -231,7 +231,6 @@ function editInfo() {
                 address: document.getElementById('address').value,
                 phone: document.getElementById('phone').value,
                 email: document.getElementById('email').value,
-                birthday: document.getElementById('birthday').value, // gender : gender,
                 image: url
             }
             console.log(data)

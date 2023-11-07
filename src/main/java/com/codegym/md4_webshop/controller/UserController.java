@@ -150,7 +150,7 @@ public class UserController {
         if (user.getPhone()== null) {
             user.setPhone(imageOptional.get().getPhone());
         }
-        if (user.getUsername()== null) {
+        if (user.getUsername() == null) {
             user.setUsername(imageOptional.get().getUsername());
         }
         if (user.getAdvertisementSet().isEmpty()) {
@@ -162,8 +162,6 @@ public class UserController {
         else  {
             user.setPassword(encoder.encode(user.getPassword()));
         }
-
-
         userService.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
