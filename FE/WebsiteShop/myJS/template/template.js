@@ -22,7 +22,7 @@ function container() {
     <aside id="colorlib-hero">
         <div class="flexslider">
             <ul class="slides">
-                <li style="background-image: url(../../images/img_bg_1.jpg);">
+                <li style="background-image: url(images/img_bg_1.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -40,7 +40,7 @@ function container() {
                         </div>
                     </div>
                 </li>
-                <li style="background-image: url(../../images/img_bg_2.jpg);">
+                <li style="background-image: url(images/img_bg_2.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -58,7 +58,7 @@ function container() {
                         </div>
                     </div>
                 </li>
-                <li style="background-image: url(../../images/img_bg_3.jpg);">
+                <li style="background-image: url(images/img_bg_3.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -93,7 +93,7 @@ function container() {
             <div class="row">
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="#" class="featured-img" style="background-image: url(../../images/men.jpg);"></a>
+                        <a href="#" class="featured-img" style="background-image: url(images/men.jpg);"></a>
                         <div class="desc">
                             <h2><a href="#">Shop Men's Collection</a></h2>
                         </div>
@@ -101,7 +101,7 @@ function container() {
                 </div>
                 <div class="col-sm-6 text-center">
                     <div class="featured">
-                        <a href="#" class="featured-img" style="background-image: url(../../images/women.jpg);"></a>
+                        <a href="#" class="featured-img" style="background-image: url(images/women.jpg);"></a>
                         <div class="desc">
                             <h2><a href="#">Shop Women's Collection</a></h2>
                         </div>

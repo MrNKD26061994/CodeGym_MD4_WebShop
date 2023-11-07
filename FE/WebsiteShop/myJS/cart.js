@@ -128,7 +128,7 @@ function listCart(){
             let str3 = `</div>
                     </div>
                     <div class="one-forth">
-                        <div class="product-img" style="background-image: url(../images/item-6.jpg);">
+                        <div class="product-img" style="background-image: url(images/item-6.jpg);">
                         </div>
                         <div class="display-tc">
                             <h3>${listCart[i].product.name}</h3>
