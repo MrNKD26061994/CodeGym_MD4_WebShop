@@ -67,7 +67,7 @@ function login() {
         const role = response.data.listRole;
         console.log(response.data.listRole)
         if (role[0] === "ROLE_ADMIN") {
-            console.log("admin")
+            document.getElementById("admin").style.display = "block"
             location.reload();
         } else if (role[0] === "ROLE_USER") {
             console.log("user")
@@ -99,6 +99,7 @@ function hide() {
         document.getElementById("logout").style.display = "none"
         document.getElementById("username").style.display = "none"
         document.getElementById("userImg").style.display = "none"
+        document.getElementById("admin").style.display = "none"
     }
 }
 function getUserName() {
