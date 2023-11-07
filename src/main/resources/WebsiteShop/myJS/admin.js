@@ -13,9 +13,9 @@ function adminForm() {
                     <div class="colorlib-product">
                         <div class="container">
                             <div class="row">
-                                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-                                    <h2>Best Sellers</h2>
-                                </div>
+<div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+<input type="text" id="searchInput" placeholder="Search by name">
+</div>
                             </div>
                             <div class="row row-pb-md">
                                 <div class="col-md-6">
@@ -221,6 +221,8 @@ function enableUser(id, button) {
     } else {
         adminForm();
     }
-
 }
+
+
+
 

@@ -212,12 +212,36 @@ function changePass() {
 
 function editInfo() {
     const fileInput = document.getElementById("customFile");
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+    const addressInput = document.getElementById("address");
+    const genderInput = document.getElementById("inputState");
+
     // Lấy file hình ảnh từ input
     const file = fileInput.files[0];
 
+    // Kiểm tra định dạng số điện thoại (10 chữ số)
+    const phonePattern = /^[0-9]{10}$/;
+    const isPhoneValid = phonePattern.test(phoneInput.value);
+
+    // Kiểm tra định dạng email
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    const isEmailValid = emailPattern.test(emailInput.value);
+
+    if (!isPhoneValid) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng 10 số.");
+        return;
+    }
+
+    if (!isEmailValid) {
+        alert("Email không hợp lệ. Vui lòng nhập đúng định dạng email.");
+        return;
+    }
+
     // Tạo tham chiếu đến nơi bạn muốn lưu trữ ảnh trong Storage
     const storageRef = storage.ref("kien/" + file.name);
-    let gender;
+
     // Tải file lên Firebase Storage
     storageRef.put(file).then((snapshot) => {
         console.log("Uploaded a file!");
@@ -227,15 +251,16 @@ function editInfo() {
             console.log(url);
             let data = {
                 id: localStorage.getItem("id"),
-                name: document.getElementById('name').value,
-                address: document.getElementById('address').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
+                name: nameInput.value,
+                address: addressInput.value,
+                phone: phoneInput.value,
+                email: emailInput.value,
+                gender: genderInput.value,
                 image: url
             }
             console.log(data)
             axios.put('http://localhost:8080/users/edit', data).then(() => {
-                alert("sửa thành công")
+                alert("Sửa thông tin thành công");
             });
         });
     });
