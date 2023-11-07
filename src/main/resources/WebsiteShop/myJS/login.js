@@ -79,6 +79,8 @@ function login() {
         else {
             alert("Sai tài khoản hoặc mật khẩu")
         }
+        getUserName();
+        location.reload();
     })
 }
 
@@ -99,7 +101,22 @@ function hide() {
         document.getElementById("userImg").style.display = "none"
     }
 }
-
+function getUserName() {
+    let id = localStorage.getItem("id");
+    console.log(id)
+    // Gửi yêu cầu HTTP GET đến API
+    axios.get(`http://localhost:8080/users/${id}`).then((response) => {
+        if (response.status === 200) {
+            // Lấy tên user từ phản hồi
+            const username = response.data.username;
+            console.log(username);
+            document.getElementById("username").innerHTML = `<a id="username-content" onclick="userInfo()">${username}</a>`;
+            document.getElementById("userImg").innerHTML = `
+<img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
+            // Hiển thị ảnh người dùng
+        }
+    });
+}
 function logout() {
     localStorage.clear();
     location.reload();

@@ -1,4 +1,4 @@
-getUserName();
+getUserName()
 //Cấu hình firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBYwhcJE-WrIAAePLLEoFJ33ba1D2P38zc",
@@ -185,16 +185,20 @@ function changePassForm() {
 \t\t\t\t\t\t\t\t\t<label for="exampleInputPassword3" class="form-label">Confirm Password *</label>
 \t\t\t\t\t\t\t\t\t<input type="password" class="form-control" id="exampleInputPassword3">
 \t\t\t\t\t\t\t\t</div>
+                <div class="gap-3 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="changePass()">Change password</button>
+                </div>
         `;
     }
 }
 
 function changePass() {
-    let newPassword = document.getElementById("exampleInputPassword2")
-    let confirmNewPassword = document.getElementById("exampleInputPassword3")
+    let newPassword = document.getElementById("exampleInputPassword2").value
+    let confirmNewPassword = document.getElementById("exampleInputPassword3").value
     if (newPassword === confirmNewPassword) {
         let data = {
-            id: localStorage.getItem("id"), pass: document.getElementById("exampleInputPassword3").value
+            id: localStorage.getItem("id"),
+            password: confirmNewPassword
         }
         axios.put('http://localhost:8080/users/edit', data).then(() => {
             alert("đổi mật khẩu thành công")
@@ -204,25 +208,7 @@ function changePass() {
     }
 }
 
-function getUserName() {
-    let id = localStorage.getItem("id");
-    console.log(id)
-    // Gửi yêu cầu HTTP GET đến API
-    axios.get(`http://localhost:8080/users/${id}`).then((response) => {
-        if (response.status === 200) {
-            // Lấy tên user từ phản hồi
-            const username = response.data.username;
-            console.log(username);
-            document.getElementById("username-content").innerHTML = username;
-            document.getElementById("userImg").innerHTML = `<img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
-            // Hiển thị ảnh người dùng
-            console.log(response.data.image)
-            if (userImage) {
 
-            }
-        }
-    });
-}
 
 function editInfo() {
     const fileInput = document.getElementById("customFile");

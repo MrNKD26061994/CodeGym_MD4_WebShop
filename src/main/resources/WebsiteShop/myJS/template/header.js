@@ -33,18 +33,17 @@ function header() {
                             <li><a href="women.html">Women</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
+                            <li><a onclick="adminForm()">Admin</a></li>
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
                             <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
-     <li class="cart" id="userImg" onload="getUserName()">
-</li>
+     <li class="cart" id="userImg"></li>
    <li class="cart" id="username">
-    <a id="username-content" onclick="userInfo()" >
-    </a>
+    
 </li>
-                            <li class="cart" id="logout"><a onclick="logout()"><i class="icon-log-out"></i>
-                          Logout
-                            </a></li>
+                            <li class="cart" id="logout">
+                            <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
