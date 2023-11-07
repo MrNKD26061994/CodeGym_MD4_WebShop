@@ -109,7 +109,7 @@ function cartContainer() {
 }
 
 function listCart(){
-    let userID = 2;
+    let userID = localStorage.getItem("id");
 
     axios.get(API_URL + `/cart/${userID}`).then((res)=> {
         let str = ``;
@@ -179,7 +179,7 @@ function changeQuantity() {
             let value = this.value; // Lấy giá trị của checkbox
             console.log("Giá trị của input vừa thay đổi là: " + value);
             console.log(input.id)
-            let userID = 2;
+            let userID = localStorage.getItem("id");
             let productID = input.id;
             axios.put(API_URL + `/cart/${productID}/${userID}/${value}`).then(()=> {
 
@@ -190,7 +190,7 @@ function changeQuantity() {
 }
 
 function getStatusCheckAll() {
-    let userID = 2;
+    let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/checkAll/${userID}`).then((res)=> {
         if(res.data) {
             document.getElementById("checkAll").checked = true;
@@ -205,7 +205,7 @@ function toggleAll(source) {
     for(let i=0, n=checkboxes.length;i<n;i++) {
         checkboxes[i].checked = source.checked;
     }
-    let userID = 2;
+    let userID = localStorage.getItem("id");
     let check = source.checked;
     axios.put(API_URL + `/cart/checkAll/${userID}/${check}`).then(()=> {
 
@@ -219,7 +219,7 @@ function getChecked(){
             console.log("Giá trị của checkbox vừa thay đổi là: " + isChecked);
             console.log(checkbox.value)
 
-            let userID = 2;
+            let userID = localStorage.getItem("id");
             let productID = checkbox.value;
             axios.put(API_URL + `/cart/${userID}/${productID}`).then(()=> {
                 getStatusCheckAll();
@@ -229,7 +229,7 @@ function getChecked(){
 }
 
 function total() {
-    let userID = 2;
+    let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/listCheck/${userID}`).then((res)=> {
         let carts = res.data;
         let subTotal = 0;

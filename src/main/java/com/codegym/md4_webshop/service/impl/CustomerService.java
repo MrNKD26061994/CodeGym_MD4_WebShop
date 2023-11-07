@@ -68,7 +68,7 @@ public class CustomerService implements ICustomerService {
     public void cancel(Long idOrders) {
         Iterable<OrderProduct> list = orderProductService.findAllByOrders(idOrders);
         for (OrderProduct item : list) {
-            orderProductService.remove(item.getId());
+//            orderProductService.remove(item.getId());
             productService.reduceQuantity(item.getProduct().getId(), - item.getCount());
         }
         ordersService.remove(idOrders);

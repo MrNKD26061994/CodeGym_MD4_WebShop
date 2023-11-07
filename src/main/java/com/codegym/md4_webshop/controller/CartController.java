@@ -23,7 +23,8 @@ public class CartController {
 
     @GetMapping("/{userID}")
     public ResponseEntity<Iterable<Cart>> list(@PathVariable Long userID) {
-        return new ResponseEntity<>(this.cartService.findAll(userID), HttpStatus.OK);
+        Iterable<Cart> carts = this.cartService.findAll(userID);
+        return new ResponseEntity<>(carts, HttpStatus.OK);
     }
 
     @GetMapping("/listCheck/{userID}")

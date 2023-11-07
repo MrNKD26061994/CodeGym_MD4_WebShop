@@ -1,6 +1,7 @@
 function showOrder() {
     checkoutContainer();
     cartTotal();
+    listPay();
 }
 
 function checkoutContainer() {
@@ -78,7 +79,7 @@ function orderContainer() {
 
                     <div class="w-100"></div>
 
-                    <div class="col-md-12">
+                    <div id="listPay" class="col-md-12">
                         <div class="cart-detail">
                             <h2>Payment Method</h2>
                             <div class="form-group">
@@ -88,6 +89,7 @@ function orderContainer() {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
@@ -95,6 +97,7 @@ function orderContainer() {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="radio">
@@ -102,6 +105,7 @@ function orderContainer() {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <div class="checkbox">
@@ -109,12 +113,13 @@ function orderContainer() {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p><a href="#" class="btn btn-primary">Place an order</a></p>
+                        <p><a onclick="pay()" class="btn btn-primary">Place an order</a></p>
                     </div>
                 </div>
             </div>
@@ -127,7 +132,7 @@ function orderContainer() {
 }
 
 function cartTotal() {
-    let userID = 2;
+    let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/listCheck/${userID}`).then((res)=> {
         let carts = res.data;
         let subTotal = 0;
@@ -174,4 +179,12 @@ function cartTotal() {
 // <!--</div>-->
 //     `
     })
+}
+
+function listPay() {
+
+}
+
+function pay(){
+
 }

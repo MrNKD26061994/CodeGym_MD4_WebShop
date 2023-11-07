@@ -36,7 +36,6 @@ public class OrdersController implements IGeneralController<Orders> {
         return null;
     }
 
-    @Override
     @DeleteMapping
     public ResponseEntity<Orders> findById(@RequestBody Long id) {
         ordersService.remove(id);
