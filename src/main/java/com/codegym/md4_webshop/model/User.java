@@ -28,4 +28,6 @@ public class User extends BaseModel {
 
     @ManyToOne
     private Role role;
+
+
 }

@@ -18,6 +18,6 @@ public class OrderProductID implements Serializable {
 
     @Column(name = "product_id")
     private Long productID;
-    @Column(name = "orders_id")
-    private Long ordersID;
+    @Column(name = "order_id")
+    private Long orderID;
 }

@@ -30,7 +30,7 @@ public class CustomerController {
     @DeleteMapping
     public ResponseEntity<Orders> cancel(@RequestBody Long id) {
         Optional<Orders> optionalOrders = ordersService.findById(id);
-        if(!optionalOrders.isPresent()) {
+        if (!optionalOrders.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         customerService.cancel(id);

@@ -22,7 +22,7 @@ public class OrdersService implements IOrdersService {
 
     @Override
     public Optional<Orders> findById(Long id) {
-        return Optional.empty();
+        return this.ordersRepository.findById(id);
     }
 
     @Override
@@ -34,5 +34,8 @@ public class OrdersService implements IOrdersService {
 
     @Override
     public void remove(Long id) {
+        Orders order = findById(id).get();
+        order.setStatus(0);
+        this.ordersRepository.save(order);
     }
 }

@@ -23,8 +23,8 @@ public class OrderProduct {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "orders_id")
-    @MapsId("ordersID")
+    @JoinColumn(name = "order_id")
+    @MapsId("orderID")
     private Orders orders;
 
     private int count;

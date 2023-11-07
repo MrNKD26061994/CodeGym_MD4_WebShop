@@ -25,7 +25,7 @@ public class OrderProductService implements IOrderProductService {
     private OrdersRepository ordersRepository;
 
     @Override
-    public Cart save(Cart item, Long idOrder) {
+    public void save(Cart item, Long idOrder) {
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setId(new OrderProductID(item.getProduct().getId(), idOrder));
         Orders orders = ordersRepository.findById(idOrder).get();
@@ -36,11 +36,15 @@ public class OrderProductService implements IOrderProductService {
         orderProduct.setPrice(product.getPrice());
         orderProduct.setDiscount(product.getDiscount());
         this.orderProductRepository.save(orderProduct);
-        return null;
     }
 
     @Override
     public Iterable<OrderProduct> findAllByOrders(Long idOrders) {
         return this.orderProductRepository.findByOrders_Id(idOrders);
+    }
+
+    @Override
+    public void remove(OrderProductID id) {
+        this.orderProductRepository.deleteById(id);
     }
 }

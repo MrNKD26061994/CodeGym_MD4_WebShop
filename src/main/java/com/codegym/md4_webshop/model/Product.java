@@ -19,7 +19,7 @@ public class Product extends BaseModel {
     private String name;
     private double price;
     private int quantity;
-    private int discount;
+        private int discount;
     private String description;
 
     @ManyToOne
@@ -30,5 +30,4 @@ public class Product extends BaseModel {
 
     @ManyToOne
     private User user;
-
 }
