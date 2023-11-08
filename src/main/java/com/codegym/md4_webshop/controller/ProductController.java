@@ -58,7 +58,8 @@ public class ProductController {
 
     @GetMapping("/men")
     public ResponseEntity<Iterable<Product>> searchMen() {
-        return new ResponseEntity<>(productService.searchByGender("Nam"), HttpStatus.OK);
+        Iterable<Product> products = productService.searchByGender("Nam");
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
     @GetMapping("/women")

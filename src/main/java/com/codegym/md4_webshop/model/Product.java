@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,6 +31,10 @@ public class Product{
 
     @ManyToOne
     private User user;
+
+    @OneToMany
+    @JoinColumn(name = "product_id")
+    private List<Image> imageList;
 
     public Product(Long id, double price) {
         this.id = id;

@@ -66,7 +66,7 @@ function search(){
             content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>

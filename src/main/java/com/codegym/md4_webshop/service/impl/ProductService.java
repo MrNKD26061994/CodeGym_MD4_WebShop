@@ -39,25 +39,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean reduceQuantity(Long id, int quantity) {
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent()) {
-            if (product.get().getQuantity() > quantity) {
-                product.get().setQuantity(product.get().getQuantity() - quantity);
-                productRepository.save(product.get());
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
+    public void reduceQuantity(Long id, int quantity) {
+        Product product = productRepository.findById(id).get();
+        product.setQuantity(product.getQuantity() - quantity);
+        productRepository.save(product);
     }
 
     @Override
     public void reducePrice(Long id, double price) {
-        Optional<Product> product = productRepository.findById(id);
-        product.get().setPrice(price);
-        productRepository.save(product.get());
+        Product product = productRepository.findById(id).get();
+        product.setPrice(product.getPrice() - price);
+        productRepository.save(product);
     }
 
     @Override
