@@ -1,6 +1,5 @@
 package com.codegym.md4_webshop.service.impl;
 
-
 import com.codegym.md4_webshop.model.User;
 import com.codegym.md4_webshop.repository.UserRepository;
 import com.codegym.md4_webshop.service.IUserService;
@@ -14,12 +13,8 @@ import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
-    private final UserRepository userRepository;
-
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    UserRepository userRepository;
 
 
     @Override
@@ -34,7 +29,7 @@ public class UserService implements IUserService {
 
     @Override
     public Iterable<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.findAllByStatus(1);
     }
 
     @Override

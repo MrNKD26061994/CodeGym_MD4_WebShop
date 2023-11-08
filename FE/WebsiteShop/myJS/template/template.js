@@ -1,4 +1,3 @@
-
 tempHeader();
 
 tempContainer();
@@ -118,7 +117,8 @@ function container() {
                     <h2>Best Sellers</h2>
                 </div>
             </div>
-            <div class="row row-pb-md">
+            <div id="filter"></div>
+            <div id="ShowProducts" class="row row-pb-md">
                 <div class="col-lg-3 mb-4 text-center">
                     <div class="product-entry border">
                         <a href="#" class="prod-img">

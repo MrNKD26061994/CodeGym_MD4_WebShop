@@ -18,6 +18,6 @@ public class Image extends BaseModel {
 
     String image;
 
-    @ManyToOne
-    Product product;
+//    @ManyToOne
+//    Product product;
 }

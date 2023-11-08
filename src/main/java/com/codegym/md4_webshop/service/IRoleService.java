@@ -6,6 +6,11 @@ import com.codegym.md4_webshop.model.Role;
 import java.util.Optional;
 
 public interface IRoleService {
-    Optional<Role> findByRoleName (ERole roleName);
+    void save(Role role);
 
+    Iterable<Role> findAll();
+
+    Role findByName(String name);
+
+    Optional<Role> findByRoleName (ERole roleName);
 }

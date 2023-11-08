@@ -1,4 +1,3 @@
-
 function header() {
     return `
     <nav class="colorlib-nav" role="navigation">
@@ -11,8 +10,8 @@ function header() {
                     <div class="col-sm-5 col-md-3">
                         <form action="#" class="search-wrap">
                             <div class="form-group">
-                                <input type="search" class="form-control search" placeholder="Search">
-                                <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                                <input id="mainSearch" type="search" class="form-control search" placeholder="Search" >
+                                <button onclick="searchProductByName()" class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -22,7 +21,7 @@ function header() {
                         <ul>
                             <li class="active"><a href="index.html">Home</a></li>
                             <li class="has-dropdown">
-                                <a onclick="showByCategory()">Men</a>
+                                <a onclick="ShowMenOfProduct()">Men</a>
                                 <ul class="dropdown">
                                     <li><a href="product-detail.html">Product Detail</a></li>
                                     <li><a href="cart.html">Shopping Cart</a></li>
@@ -31,7 +30,7 @@ function header() {
                                     <li><a href="add-to-wishlist.html">Wishlist</a></li>
                                 </ul>
                             </li>
-                            <li><a href="women.html">Women</a></li>
+                            <li><a onclick="ShowWomenOfProduct()">Women</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li class="cart"><a onclick="showCart()"><i class="icon-shopping-cart"></i> Cart [<span style="color: red" id="numberCart">0</span>]</a></li>
@@ -43,6 +42,7 @@ function header() {
                             <li class="cart" id="logout">
                             <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
                             </li>
+                            <li><a onclick="filter()">Filter</a></li>
                         </ul>
                     </div>
                 </div>

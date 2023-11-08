@@ -8,15 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
 public class RoleService implements IRoleService {
-    private final RoleRepository roleRepository;
     @Autowired
-
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+    private RoleRepository roleRepository;
+    @Override
+    public void save(Role role) {
+        roleRepository.save(role);
     }
 
+    @Override
+    public Iterable<Role> findAll() {
+        return roleRepository.findAll();
+    }
+
+    @Override
+    public Role findByName(String name) {
+        return null;
+    }
     @Override
     public Optional<Role> findByRoleName(ERole roleName) {
         return roleRepository.findByRoleName(roleName);
