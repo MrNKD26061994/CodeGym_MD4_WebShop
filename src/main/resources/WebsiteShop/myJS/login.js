@@ -7,6 +7,7 @@ function loginForm() {
     function tempContainer() {
         document.getElementById("container").innerHTML = loginContainer();
     }
+
     function loginContainer() {
         return `
             <div id="loginContainer" xmlns="http://www.w3.org/1999/html">
@@ -17,7 +18,7 @@ function loginForm() {
                             <div class="col-md-6">
                             <div class="contact-wrap">
                                 <h3>Login</h3>
-                                <form action="#" class="contact-form">
+                    
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -39,7 +40,7 @@ function loginForm() {
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                          
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -52,9 +53,7 @@ function loginForm() {
         `;
     }
 }
-
 function login() {
-    document.getElementById("adminRole").style.display = "none";
     let userName = document.getElementById("userName").value;
     let passWord = document.getElementById("password").value;
     let user = {
@@ -65,13 +64,15 @@ function login() {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userName", response.data.username)
         localStorage.setItem("id", response.data.userId)
-        const role = response.data.listRole;
-        if (role.includes("ROLE_ADMIN")) {
-            document.getElementById("adminRole").style.display = "block";
-        }
-        getUserName();
         location.reload();
     })
+        .catch((error) => {
+            // Xử lý lỗi ở đây
+            console.error("Error logging in:", error);
+
+            // Hiển thị thông báo lỗi cho người dùng
+            alert("Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.");
+        });
 }
 
 function hide() {
@@ -93,22 +94,8 @@ function hide() {
         document.getElementById("adminRole").style.display = "none";
     }
 }
-function getUserName() {
-    let id = localStorage.getItem("id");
-    console.log(id)
-    // Gửi yêu cầu HTTP GET đến API
-    axios.get(`http://localhost:8080/users/${id}`).then((response) => {
-        if (response.status === 200) {
-            // Lấy tên user từ phản hồi
-            const username = response.data.username;
-            console.log(username);
-            document.getElementById("username").innerHTML = `<a id="username-content" onclick="userInfo()">${username}</a>`;
-            document.getElementById("userImg").innerHTML = `
-<img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
-            // Hiển thị ảnh người dùng
-        }
-    });
-}
+
+
 function logout() {
     localStorage.clear();
     location.reload();
