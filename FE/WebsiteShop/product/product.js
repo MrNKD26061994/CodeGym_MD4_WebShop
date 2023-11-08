@@ -8,7 +8,7 @@ axios.get(url).then((data) => {
         content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRqKLWqPawRz23jkq1Ku_nBBHC2YFU7PYP_g&usqp=CAU" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
@@ -25,7 +25,6 @@ axios.get(url).then((data) => {
     alert("not found")
 })
 
-
 function ShowMenOfProduct() {
     axios.get("http://localhost:8080/api/products/men").then((data) => {
         let product = data.data;
@@ -36,7 +35,7 @@ function ShowMenOfProduct() {
             content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="https://i.pinimg.com/originals/35/4c/7e/354c7e56182664495653ba56bb51e762.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
@@ -65,7 +64,7 @@ function ShowWomenOfProduct() {
             content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
@@ -98,7 +97,7 @@ function searchProductByName(){
             content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
