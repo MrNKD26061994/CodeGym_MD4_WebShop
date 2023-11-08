@@ -78,43 +78,9 @@ function orderContainer() {
                     </div>
 
                     <div class="w-100"></div>
-
+                    
                     <div id="listPay" class="col-md-12">
-                        <div class="cart-detail">
-                            <h2>Payment Method</h2>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Direct Bank Tranfer</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Check Payment</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Paypal</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value=""> I have read and accept the terms and conditions</label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -182,7 +148,26 @@ function cartTotal() {
 }
 
 function listPay() {
-
+    axios.get(API_URL + `/pays`).then((res)=> {
+        let pays = res.data;
+        let str = `
+    <div class="cart-detail">
+        <h2>Payment Method</h2>`;
+        for (let i = 0; i < pays.length; i++) {
+            str += `
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="radio">
+                        <label><input type="radio" name="optradio"> ${pays[i].name}</label>
+                    </div>
+                </div>
+            </div>
+            `
+        }
+        str += `
+            </div>`
+        document.getElementById("listPay").innerHTML = str;
+    })
 }
 
 function pay(){
