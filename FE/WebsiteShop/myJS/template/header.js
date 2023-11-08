@@ -33,7 +33,7 @@ function header() {
                             <li><a onclick="ShowWomenOfProduct()">Women</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                       <li><a onclick="filter()">Filter</a></li>
+                            <li><a onclick="filter()">Filter</a></li>
                             <li><a onclick="showFormReport()">Report</a></li>
 
                             <li class="cart"><a onclick="showCart()"><i class="icon-shopping-cart"></i> Cart [<span style="color: red" id="numberCart">0</span>]</a></li>
@@ -46,7 +46,6 @@ function header() {
                             <li class="cart" id="logout">
                             <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
                             </li>
-                            <li><a onclick="filter()">Filter</a></li>
                         </ul>
                     </div>
                 </div>

@@ -115,7 +115,7 @@ function cartTotal() {
         let carts = res.data;
         let subTotal = 0;
         let discount = 0;
-        let name = carts[0].name;
+        // let name = carts[0].name;
         let str = `
     <div class="cart-detail">
         <h2>Cart Total</h2>
@@ -190,7 +190,7 @@ function pay(){
         let carts = res[1].data;
         let customerPayDTO = {
             pay: {
-                id: orderID
+                id: payID
             },
             address: address,
             user: {

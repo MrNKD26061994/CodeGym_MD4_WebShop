@@ -62,6 +62,7 @@ public class CartService implements ICartService {
             }
         }
         cart.setCount(1);
+        cart.setId(new CartID(cart.getProduct().getId(), cart.getUser().getId()));
         cartRepository.save(cart);
     }
 
@@ -114,9 +115,19 @@ public class CartService implements ICartService {
 
     @Override
     public void save(Long productID, Long userID, int quantity) {
-        Cart cart = findById(new CartID(productID, userID)).get();
-        cart.setCount(quantity);
-        cartRepository.save(cart);
+        Optional<Cart> cart = findById(new CartID(productID, userID));
+        if(cart.isPresent()){
+            cart.get().setCount(quantity);
+            cartRepository.save(cart.get());
+        } else {
+            CartID cartID = new CartID(productID, userID);
+            Product product = new Product();
+            product.setId(productID);
+            User user = new User();
+            user.setId(userID);
+            Cart cart1 = new Cart(cartID, product, user, 1, false);
+            cartRepository.save(cart1);
+        }
     }
 
     @Override
@@ -124,5 +135,20 @@ public class CartService implements ICartService {
         User user = new User();
         user.setId(userID);
         return this.cartRepository.findAllByUserAndChecked(user, true);
+    }
+
+    @Override
+    public Cart addProduct(Long productID, Long userID) {
+//        User user = new User();
+//        user.setId(userID);
+//        Iterable<Cart> carts = cartRepository.findAllByUser(user);
+//        for (Cart item : carts) {
+//            if(item.getProduct().getId() == productID){
+//                item.setCount(item.getCount() + 1);
+//                return cartRepository.save(item);
+//            }
+//        }
+//        Cart cart = new Cart(new CartID(productID, userID), 1, false);
+        return null;
     }
 }

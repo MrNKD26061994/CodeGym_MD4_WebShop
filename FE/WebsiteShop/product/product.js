@@ -7,8 +7,8 @@ axios.get(url).then((data) => {
         console.log(product[i].name);
         content += `<div class="col-md-3 col-lg-3 mb-4 text-center">
                 <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    <a onclick="showProductDetail(${product[i].id}})"  class="prod-img">
+                        <img  src="${product[i].imageList[0].image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
                     <div class="desc">
                         <h2><a href="#">${product[i].name}</a></h2>
@@ -113,4 +113,24 @@ function searchProductByName(){
     }).catch(() => {
         alert("not found")
     })
+}
+
+function addToCart(productID) {
+    let userID = localStorage.getItem("id");
+    let cart = {
+        user: {
+            id: userID
+        },
+        product: {
+            id: productID
+        }
+    }
+    axios.put(API_URL + `/cart/add`, cart).then(() => {
+        getListNumberCartByUser()
+        alert("Tạo thành công")
+    })
+}
+
+function viewDetail(productID) {
+
 }
