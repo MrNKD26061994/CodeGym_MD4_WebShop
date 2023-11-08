@@ -1,6 +1,7 @@
 package com.codegym.md4_webshop.service;
 
 import com.codegym.md4_webshop.model.Product;
+import com.codegym.md4_webshop.model.oderProduct.OrderProduct;
 import com.codegym.md4_webshop.model.oderProduct.SearchOBJ;
 
 public interface IProductService extends IGeneralService<Product> {
@@ -13,6 +14,8 @@ public interface IProductService extends IGeneralService<Product> {
     Iterable<Product> searchProductByName(String name);
 
     Iterable<Product> filter(SearchOBJ searchOBJ);
+
+    Iterable<OrderProduct> reportByYear(SearchOBJ searchOBJ);
 
 
 }

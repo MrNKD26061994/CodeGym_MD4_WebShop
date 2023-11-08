@@ -43,6 +43,9 @@ function header() {
                             <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
                             </li>
                             <li><a onclick="filter()">Filter</a></li>
+                            <li><a onclick="showReportByYear()">Report</a></li>
+                            
+                            <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                         </ul>
                     </div>
                 </div>
