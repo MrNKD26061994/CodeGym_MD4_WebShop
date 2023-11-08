@@ -18,6 +18,7 @@ function tempFooter() {
 
 function container() {
     return `
+
     <aside id="colorlib-hero">
         <div class="flexslider">
             <ul class="slides">
@@ -109,7 +110,6 @@ function container() {
             </div>
         </div>
     </div>
-
     <div class="colorlib-product">
         <div class="container">
             <div class="row">

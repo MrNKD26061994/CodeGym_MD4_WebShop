@@ -1,14 +1,16 @@
 function filterForm(){
-let content=`<table style="width: 100%; border: 1px solid; margin: 20px">
+let content=`<div class="row">
+                    <div class="col-sm-12 text-left menu-1">
+<table style="width: 100%; border: 1px solid; margin: 20px">
     <tr>
-        <td>Filter</td>
+        <td class="active">Filter</td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" style="width: 30%">Price gape</td>
-        <td style="width: 30%">Category</td>
-        <td style="width: 30%">Gender</td>
-        <td rowspan="2"><button onclick="search()">search</button> </td>
+        <td style="width: 40%" colspan="2" style="width: 30%">Price gape</td>
+        <td style="width: 20%">Category</td>
+        <td style="width: 20%">Product name</td>
+        <td rowspan="2"><button class="active" onclick="search()">search</button> </td>
      </tr>
       <tr>
         <td colspan="2"><input id="lowPrice" type="text" placeholder="nhập giá min"> <label> >>> </label> <input id="highPrice" type="text" placeholder="nhập giá max"></td>
@@ -17,7 +19,9 @@ let content=`<table style="width: 100%; border: 1px solid; margin: 20px">
         
        
      </tr>
-</table>`
+</table>
+</div>
+</div>`
     loadCategory();
     document.getElementById("filter").innerHTML=content;
 }

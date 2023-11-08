@@ -1,8 +1,10 @@
 package com.codegym.md4_webshop.service.impl;
 
 import com.codegym.md4_webshop.model.Product;
+import com.codegym.md4_webshop.model.oderProduct.OrderProduct;
 import com.codegym.md4_webshop.model.oderProduct.SearchOBJ;
 import com.codegym.md4_webshop.repository.ProductRepository;
+import com.codegym.md4_webshop.repository.ReportRepository;
 import com.codegym.md4_webshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ReportRepository reportRepository;
 
     @Override
     public Iterable<Product> findAll() {
@@ -84,5 +88,16 @@ public class ProductService implements IProductService {
         } else {
             return productRepository.search3(searchName);
         }
+    }
+
+    @Override
+    public Iterable<OrderProduct> reportByYear(SearchOBJ searchOBJ) {
+        Iterable<OrderProduct> orderProducts = reportRepository.reportByYear(searchOBJ.getNum1());
+        return orderProducts;
+    }
+    @Override
+    public Iterable<OrderProduct> reportByMonth(SearchOBJ searchOBJ) {
+        Iterable<OrderProduct> orderProducts = reportRepository.reportByMonth(searchOBJ.getNum1(), searchOBJ.getNum2());
+        return orderProducts;
     }
 }

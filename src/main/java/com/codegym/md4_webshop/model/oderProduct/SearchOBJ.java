@@ -46,6 +46,7 @@ public class SearchOBJ {
         this.name = name;
     }
 
+
     public Long getNum1() {
         return num1;
     }
