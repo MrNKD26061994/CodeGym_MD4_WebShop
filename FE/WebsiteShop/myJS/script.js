@@ -10,3 +10,13 @@ function getListNumberCartByUser(){
         document.getElementById("numberCart").innerHTML = res.data.length;
     })
 }
+
+function getSelectedRadio(tag) {
+    const radioButtons = document.getElementsByName(tag);
+
+    for (let i = 0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            return radioButtons[i].value;
+        }
+    }
+}

@@ -107,7 +107,6 @@ function cartContainer() {
             </div>
         `
 }
-
 function listCart(){
     let userID = localStorage.getItem("id");
 
@@ -128,7 +127,7 @@ function listCart(){
             let str3 = `</div>
                     </div>
                     <div class="one-forth">
-                        <div class="product-img" style="background-image: url(images/item-6.jpg);">
+                        <div class="product-img" style="background-image: url(${listCart[i].product.imageList[0].image});">
                         </div>
                         <div class="display-tc">
                             <h3>${listCart[i].product.name}</h3>
@@ -170,7 +169,6 @@ function listCart(){
         total()
     })
 }
-
 function changeQuantity() {
     let numberInputs = document.querySelectorAll("input[type='number']");
 
@@ -188,7 +186,6 @@ function changeQuantity() {
     });
 
 }
-
 function getStatusCheckAll() {
     let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/checkAll/${userID}`).then((res)=> {
@@ -197,6 +194,7 @@ function getStatusCheckAll() {
         } else {
             document.getElementById("checkAll").checked = false;
         }
+        total();
     })
 }
 function toggleAll(source) {
@@ -223,11 +221,11 @@ function getChecked(){
             let productID = checkbox.value;
             axios.put(API_URL + `/cart/${userID}/${productID}`).then(()=> {
                 getStatusCheckAll();
+                total();
             })
         });
     });
 }
-
 function total() {
     let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/listCheck/${userID}`).then((res)=> {

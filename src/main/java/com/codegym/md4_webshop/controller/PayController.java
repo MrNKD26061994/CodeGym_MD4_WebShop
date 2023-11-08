@@ -1,6 +1,5 @@
 package com.codegym.md4_webshop.controller;
 
-import com.codegym.md4_webshop.model.Image;
 import com.codegym.md4_webshop.model.Pay;
 import com.codegym.md4_webshop.service.IPayService;
 import org.springframework.beans.factory.annotation.Autowired;
