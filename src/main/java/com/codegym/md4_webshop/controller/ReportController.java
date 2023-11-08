@@ -18,4 +18,9 @@ public class ReportController {
         Iterable<OrderProduct> orderProducts = productService.reportByYear(searchOBJ);
         return new ResponseEntity<>(orderProducts, HttpStatus.OK);
     }
+    @PostMapping("/month")
+    public ResponseEntity<Iterable<OrderProduct>> reportByMonth(@RequestBody SearchOBJ searchOBJ){
+        Iterable<OrderProduct> orderProducts = productService.reportByMonth(searchOBJ);
+        return new ResponseEntity<>(orderProducts, HttpStatus.OK);
+    }
 }

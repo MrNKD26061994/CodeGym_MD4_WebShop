@@ -16,6 +16,9 @@ public interface IProductService extends IGeneralService<Product> {
     Iterable<Product> filter(SearchOBJ searchOBJ);
 
     Iterable<OrderProduct> reportByYear(SearchOBJ searchOBJ);
+    Iterable<OrderProduct> reportByMonth(SearchOBJ searchOBJ);
+
+
 
 
 }
