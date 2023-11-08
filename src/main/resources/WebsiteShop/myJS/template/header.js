@@ -33,10 +33,11 @@ function header() {
                             <li><a href="women.html">Women</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li id="admin"><a onclick="adminForm()">Admin</a></li>
+            <li id="adminRole" ><a onclick="adminForm()">Admin</a></li>
                             <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
                             <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
+
      <li class="cart" id="userImg"></li>
    <li class="cart" id="username">
     

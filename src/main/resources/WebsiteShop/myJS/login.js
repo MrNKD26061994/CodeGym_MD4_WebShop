@@ -54,6 +54,7 @@ function loginForm() {
 }
 
 function login() {
+    document.getElementById("adminRole").style.display = "none";
     let userName = document.getElementById("userName").value;
     let passWord = document.getElementById("password").value;
     let user = {
@@ -65,19 +66,8 @@ function login() {
         localStorage.setItem("userName", response.data.username)
         localStorage.setItem("id", response.data.userId)
         const role = response.data.listRole;
-        console.log(response.data.listRole)
-        if (role[0] === "ROLE_ADMIN") {
-            document.getElementById("admin").style.display = "block"
-            location.reload();
-        } else if (role[0] === "ROLE_USER") {
-            console.log("user")
-            location.reload();
-        } else if (role[0] === "ROLE_MODERATOR"){
-            console.log("moderator")
-            location.reload();
-        }
-        else {
-            alert("Sai tài khoản hoặc mật khẩu")
+        if (role.includes("ROLE_ADMIN")) {
+            document.getElementById("adminRole").style.display = "block";
         }
         getUserName();
         location.reload();
@@ -92,6 +82,7 @@ function hide() {
         document.getElementById("logout").style.display = "block"
         document.getElementById("username").style.display = "block"
         document.getElementById("userImg").style.display = "block"
+        // document.getElementById("adminRole").style.display = "none";
     }
     if (token === null) {
         document.getElementById("register").style.display = "block"
@@ -99,7 +90,7 @@ function hide() {
         document.getElementById("logout").style.display = "none"
         document.getElementById("username").style.display = "none"
         document.getElementById("userImg").style.display = "none"
-        document.getElementById("admin").style.display = "none"
+        document.getElementById("adminRole").style.display = "none";
     }
 }
 function getUserName() {

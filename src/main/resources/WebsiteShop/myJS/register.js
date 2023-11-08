@@ -21,7 +21,7 @@ function registerForm() {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="fname">User name</label>
-                                                <input required type="text" id="userName" class="form-control" placeholder="User name">
+                                                <input required type="text" id="username" class="form-control" placeholder="User name">
                                             </div>
                                         </div>
                                                  <div class="w-100"></div>
@@ -35,7 +35,7 @@ function registerForm() {
                       <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="lname">Confirm Password</label>
-                                                <input onchange="validatePassword()" required type="password" id="confirmPassword" class="form-control" placeholder="Your lastname">
+                                                <input onchange="checkPassword()" required type="password" id="confirmPassword" class="form-control" placeholder="Your lastname">
                                             </div>
                                         </div>
                                         <div class="w-100"></div>
@@ -95,12 +95,12 @@ function checkPassword() {
 }
 
 function register() {
-    let userName = document.getElementById("userName").value;
+    let username = document.getElementById("username").value;
     let password = document.getElementById("confirmPassword").value;
     let email = document.getElementById("email").value;
     console.log("xxxxxxxxxx")
     let user = {
-        userName: userName,
+        username: username,
         password: password,
         email: email
     }

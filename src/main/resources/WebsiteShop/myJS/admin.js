@@ -13,9 +13,9 @@ function adminForm() {
                     <div class="colorlib-product">
                         <div class="container">
                             <div class="row">
-<div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-<input type="text" id="searchInput" placeholder="Search by name">
-</div>
+                                <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                                    <input type="text" id="searchInput" placeholder="Search by name">
+                                </div>
                             </div>
                             <div class="row row-pb-md">
                                 <div class="col-md-6">
@@ -49,6 +49,13 @@ function adminForm() {
             </div>`;
 
                 container.innerHTML = str;
+
+                // Attach event listeners to "Edit" buttons to open the modal with user data
+                const editButtons = document.querySelectorAll('.btn.btn-default.btn-rounded');
+                editButtons.forEach((editButton) => {
+                    const userId = editButton.getAttribute('data-id');
+                    editButton.addEventListener('click', () => openUserModal(userId));
+                });
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -58,25 +65,23 @@ function adminForm() {
     function createProductCard(user, isDisabled) {
         const statusText = isDisabled ? "Disabled" : "Active";
         const actionText = isDisabled ? "Enable" : "Disable";
-console.log(user)
         return `
             <div class="col-lg-6 mb-4 text-center">
                 <div class="product-entry border">
                     <a href="#" class="prod-img">
-                        <img src="${user.image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                            <img src="${user.image}" class="img-fluid" alt="Free html5 bootstrap 4 template">
                     </a>
+                    
                     <input type="hidden" id="id" value="${user.id}">
                     <div class="desc">
                         <h2><a href="#">${user.username}</a></h2>
                         <!--Modal: Login with Avatar Form-->
-<div  class="modal fade btn" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
-    <!--Content-->
-    <div class="modal-content">
-
-      <!--Header-->
-      <div class="modal-header">
+                        <div class="modal fade btn" id="modalLoginAvatar_${user.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+                                <!--Content-->
+                                <div class="modal-content">
+                                    <!--Header-->
+                                         <div class="modal-header">
         <img src="${user.image}" alt="avatar" class="rounded-circle img-responsive" style="width: 100%; justify-content: center">
       </div>
       <!--Body-->
@@ -113,27 +118,32 @@ console.log(user)
           <input type="text" id="username" class="form-control form-control-sm validate ml-0" value="${user.username}" >
 
         </div>
-<div class="text-center mt-4">
-    <button class="btn btn-cyan mt-1" onclick="confirmEdit()">Edit <i class="fas fa-sign-in ml-1"></i></button>
-</div>
-      </div>
-
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
-<!--Modal: Login with Avatar Form-->
-
-<div class="text-center">
-  <button style="border: solid black" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">
-    Edit</button>
-</div>
-                        <button class="price" onclick="${isDisabled ? 'enableUser' : 'disableUser'}(${user.id}, this)">${actionText}</button>
+                                        <!-- Add other user information fields here -->
+                                        <div class="text-center mt-4">
+                                            <button class="btn btn-cyan mt-1" onclick="confirmEdit()">Edit <i class="fas fa-sign-in ml-1"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Modal: Login with Avatar Form-->
+                        <div class="text-center">
+                            <button style="border: solid black" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar_${user.id}" data-id="${user.id}">
+                                Edit
+                            </button>
+                        </div>
                     </div>
+                                            <button class="price" onclick="${isDisabled ? 'enableUser' : 'disableUser'}(${user.id}, this)">${actionText}</button>
                 </div>
             </div>`;
     }
+
+    function openUserModal(userId) {
+        // Trigger the modal with the specified user ID
+        $(`#modalLoginAvatar_${userId}`).modal('show');
+    }
 }
+
 
 function confirmEdit() {
     const phoneInput = document.getElementById('phone');
