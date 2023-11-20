@@ -86,8 +86,9 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Cart> delete(@RequestBody CartID id) {
+    @DeleteMapping("/{userID}/{productID}")
+    public ResponseEntity<Cart> delete(@PathVariable Long productID, @PathVariable Long userID) {
+        CartID id = new CartID(productID, userID);
         Optional<Cart> cart = cartService.findById(id);
         if (!cart.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

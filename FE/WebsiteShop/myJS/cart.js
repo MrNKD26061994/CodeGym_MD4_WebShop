@@ -155,8 +155,8 @@ function listCart(){
                         </div>
                     </div>
                     <div class="one-eight text-center">
-                        <div class="display-tc">
-                            <a href="#" class="closed"></a>
+                        <div onclick="deleteToCart(${listCart[i].product.id})" class="display-tc">
+                            <a  class="closed"></a>
                         </div>
                     </div>
             </div>`
@@ -169,22 +169,37 @@ function listCart(){
         total()
     })
 }
+
+function deleteToCart(productID) {
+    let userID = localStorage.getItem("id") * 1;
+    axios.delete(API_URL + `/cart/${userID}/${productID}`).then(()=> {
+        listCart();
+    })
+}
 function changeQuantity() {
     let numberInputs = document.querySelectorAll("input[type='number']");
 
     numberInputs.forEach(function(input) {
         input.addEventListener("change", function() {
-            let value = this.value; // Lấy giá trị của checkbox
+            let value = this.value;
             console.log("Giá trị của input vừa thay đổi là: " + value);
             console.log(input.id)
             let userID = localStorage.getItem("id");
             let productID = input.id;
-            axios.put(API_URL + `/cart/${productID}/${userID}/${value}`).then(()=> {
-
+            axios.get(API_URL + `/api/products/${productID}`).then((res) => {
+                let quantity = res.data.quantity;
+                if(value <= quantity) {
+                    axios.put(API_URL + `/cart/${productID}/${userID}/${value}`).then(()=> {
+                        total();
+                    })
+                } else {
+                    alert("Quá số lượng")
+                    input.value = quantity;
+                }
             })
+
         });
     });
-
 }
 function getStatusCheckAll() {
     let userID = localStorage.getItem("id");
