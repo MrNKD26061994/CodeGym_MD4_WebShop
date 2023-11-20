@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface IRoleService {
     Optional<Role> findByRoleName (ERole roleName);
 
+    Optional<Role> findByRoleName (ERole roleName);
 }

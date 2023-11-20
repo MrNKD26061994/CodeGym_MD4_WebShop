@@ -18,11 +18,11 @@ function tempFooter() {
 
 function container() {
     return `
-    <div id="container">
+
     <aside id="colorlib-hero">
         <div class="flexslider">
             <ul class="slides">
-                <li style="background-image: url(../../images/img_bg_1.jpg);">
+                <li style="background-image: url(images/img_bg_1.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -40,7 +40,7 @@ function container() {
                         </div>
                     </div>
                 </li>
-                <li style="background-image: url(../../images/img_bg_2.jpg);">
+                <li style="background-image: url(images/img_bg_2.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -58,7 +58,7 @@ function container() {
                         </div>
                     </div>
                 </li>
-                <li style="background-image: url(../../images/img_bg_3.jpg);">
+                <li style="background-image: url(images/img_bg_3.jpg);">
                     <div class="overlay"></div>
                     <div class="container-fluid">
                         <div class="row">
@@ -79,46 +79,48 @@ function container() {
             </ul>
         </div>
     </aside>
-    <div class="colorlib-intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h2 class="intro">It started with a simple idea: Create quality, well-designed products that I wanted myself.</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="colorlib-product">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6 text-center">
-                    <div class="featured">
-                        <a href="#" class="featured-img" style="background-image: url(../../images/men.jpg);"></a>
-                        <div class="desc">
-                            <h2><a href="#">Shop Men's Collection</a></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <div class="featured">
-                        <a href="#" class="featured-img" style="background-image: url(../../images/women.jpg);"></a>
-                        <div class="desc">
-                            <h2><a href="#">Shop Women's Collection</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="colorlib-product">
+<!--    <div class="colorlib-intro">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-12 text-center">-->
+<!--                    <h2 class="intro">It started with a simple idea: Create quality, well-designed products that I wanted myself.</h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    
+<!--    <div class="colorlib-product">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-6 text-center">-->
+<!--                    <div class="featured">-->
+<!--                        <a href="#" class="featured-img" style="background-image: url(images/men.jpg);"></a>-->
+<!--                        <div class="desc">-->
+<!--                            <h2><a href="#">Shop Men's Collection</a></h2>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 text-center">-->
+<!--                    <div class="featured">-->
+<!--                        <a href="#" class="featured-img" style="background-image: url(images/women.jpg);"></a>-->
+<!--                        <div class="desc">-->
+<!--                            <h2><a href="#">Shop Women's Collection</a></h2>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="colorlib-product">-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
                     <h2>Best Sellers</h2>
                 </div>
             </div>
-            <div class="row row-pb-md">
+            <div id="filter"></div>
+            <div id="ShowProducts" class="row row-pb-md">
                 <div class="col-lg-3 mb-4 text-center">
                     <div class="product-entry border">
                         <a href="#" class="prod-img">

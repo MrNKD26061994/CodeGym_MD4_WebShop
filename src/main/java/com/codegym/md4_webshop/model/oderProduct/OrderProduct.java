@@ -25,7 +25,7 @@ public class OrderProduct {
     @ManyToOne
     @JoinColumn(name = "order_id")
     @MapsId("orderID")
-    private Orders order;
+    private Orders orders;
 
     private int count;
     private double price;

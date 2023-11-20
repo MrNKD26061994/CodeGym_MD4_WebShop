@@ -29,4 +29,7 @@ public class Cart {
     private User user;
 
     private int count;
+
+    private boolean checked;
+
 }

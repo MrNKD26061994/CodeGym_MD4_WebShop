@@ -27,6 +27,8 @@ function header() {
                             <div class="form-group">
                                 <input type="search" class="form-control search" placeholder="Search">
                                 <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                                <input id="mainSearch" type="search" class="form-control search" placeholder="Search" >
+                                <button onclick="searchProductByName()" class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
                             </div>
                         </form>
                     </div>
@@ -37,6 +39,11 @@ function header() {
                             <li class="active"><a href="index.html">Home</a></li>
                             <li class="has-dropdown">
                                 <a onclick="showByCategory()">Men</a>
+                    <div class="col-sm-12 text-left menu-1">
+                        <ul>
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="has-dropdown">
+                                <a onclick="ShowMenOfProduct()">Men</a>
                                 <ul class="dropdown">
                                     <li><a href="product-detail.html">Product Detail</a></li>
                                     <li><a href="cart.html">Shopping Cart</a></li>
@@ -59,6 +66,19 @@ function header() {
    <li class="cart" id="username">
    
 </li>
+                            <li><a onclick="ShowWomenOfProduct()">Women</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a onclick="filter()">Filter</a></li>
+                            <li><a onclick="showFormReport()">Report</a></li>
+
+                            <li class="cart"><a onclick="showCart()"><i class="icon-shopping-cart"></i> Cart [<span style="color: red" id="numberCart">0</span>]</a></li>
+                            <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
+                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
+
+                            
+                            <li class="cart" id="userImg"></li>
+                            <li class="cart" id="username"></li>
                             <li class="cart" id="logout">
                             <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
                             </li>

@@ -1,6 +1,5 @@
 package com.codegym.md4_webshop.service.impl;
 
-
 import com.codegym.md4_webshop.model.User;
 import com.codegym.md4_webshop.repository.UserRepository;
 import com.codegym.md4_webshop.service.IUserService;

@@ -4,6 +4,7 @@ function showByCategory() {
 
     function tempContainer() {
         document.getElementById("container").innerHTML = categoryContainer();
+        uploadDataProductOfMen();
     }
 
     function categoryContainer() {
@@ -252,6 +253,7 @@ function showByCategory() {
                     </div>
                 </div>
             </div>
+        <div id="MenProducts" class="row row-pb-md">
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
@@ -300,4 +302,9 @@ function showByCategory() {
         </div>
         `
     }
+}
+
+function uploadDataProductOfMen(){
+    let url = "http://localhost:8080/api/products/men";
+
 }
