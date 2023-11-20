@@ -59,7 +59,7 @@ public class CustomerService implements ICustomerService {
         }
 
         for (Cart item : customerPayDTO.getCartList()) {
-            cartController.delete(new CartID(item.getProduct().getId(), item.getUser().getId()));
+            cartController.delete(item.getUser().getId(), item.getProduct().getId());
         }
     }
 

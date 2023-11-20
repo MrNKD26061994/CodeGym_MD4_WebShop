@@ -30,4 +30,6 @@ public interface ICartService {
     void save(Long productID, Long userID, int quantity);
 
     Iterable<Cart> findAllByCheck(Long userID);
+
+    Cart addProduct(Long productID, Long userID);
 }

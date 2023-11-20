@@ -7,7 +7,7 @@ function showFormReport(){
     <tr><td><a class="active"  onclick="showReportPerMonth()">Show monthy report </a></td></tr>
     </table>
     `
-    document.getElementById("filter").innerHTML=content;
+    document.getElementById("filter").innerHTML = content;
 }
 
 function showReportPerYear(){
@@ -22,7 +22,7 @@ function showReportPerYear(){
    
     </table>
     `
-    document.getElementById("filter").innerHTML=content;
+    document.getElementById("filter").innerHTML = content;
 }
 
 function showReportPerMonth(){

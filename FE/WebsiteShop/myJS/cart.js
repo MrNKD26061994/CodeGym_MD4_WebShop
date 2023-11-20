@@ -107,7 +107,6 @@ function cartContainer() {
             </div>
         `
 }
-
 function listCart(){
     let userID = localStorage.getItem("id");
 
@@ -128,7 +127,7 @@ function listCart(){
             let str3 = `</div>
                     </div>
                     <div class="one-forth">
-                        <div class="product-img" style="background-image: url(images/item-6.jpg);">
+                        <div class="product-img" style="background-image: url(${listCart[i].product.imageList[0].image});">
                         </div>
                         <div class="display-tc">
                             <h3>${listCart[i].product.name}</h3>
@@ -156,8 +155,8 @@ function listCart(){
                         </div>
                     </div>
                     <div class="one-eight text-center">
-                        <div class="display-tc">
-                            <a href="#" class="closed"></a>
+                        <div onclick="deleteToCart(${listCart[i].product.id})" class="display-tc">
+                            <a  class="closed"></a>
                         </div>
                     </div>
             </div>`
@@ -171,24 +170,37 @@ function listCart(){
     })
 }
 
+function deleteToCart(productID) {
+    let userID = localStorage.getItem("id") * 1;
+    axios.delete(API_URL + `/cart/${userID}/${productID}`).then(()=> {
+        listCart();
+    })
+}
 function changeQuantity() {
     let numberInputs = document.querySelectorAll("input[type='number']");
 
     numberInputs.forEach(function(input) {
         input.addEventListener("change", function() {
-            let value = this.value; // Lấy giá trị của checkbox
+            let value = this.value;
             console.log("Giá trị của input vừa thay đổi là: " + value);
             console.log(input.id)
             let userID = localStorage.getItem("id");
             let productID = input.id;
-            axios.put(API_URL + `/cart/${productID}/${userID}/${value}`).then(()=> {
-
+            axios.get(API_URL + `/api/products/${productID}`).then((res) => {
+                let quantity = res.data.quantity;
+                if(value <= quantity) {
+                    axios.put(API_URL + `/cart/${productID}/${userID}/${value}`).then(()=> {
+                        total();
+                    })
+                } else {
+                    alert("Quá số lượng")
+                    input.value = quantity;
+                }
             })
+
         });
     });
-
 }
-
 function getStatusCheckAll() {
     let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/checkAll/${userID}`).then((res)=> {
@@ -197,6 +209,7 @@ function getStatusCheckAll() {
         } else {
             document.getElementById("checkAll").checked = false;
         }
+        total();
     })
 }
 function toggleAll(source) {
@@ -223,11 +236,11 @@ function getChecked(){
             let productID = checkbox.value;
             axios.put(API_URL + `/cart/${userID}/${productID}`).then(()=> {
                 getStatusCheckAll();
+                total();
             })
         });
     });
 }
-
 function total() {
     let userID = localStorage.getItem("id");
     axios.get(API_URL + `/cart/listCheck/${userID}`).then((res)=> {
