@@ -66,22 +66,28 @@ function login() {
         localStorage.setItem("id", response.data.userId)
         const role = response.data.listRole;
         console.log(response.data.listRole)
-        if (role[0] === "ROLE_ADMIN") {
-            document.getElementById("admin").style.display = "block"
-            location.reload();
-        } else if (role[0] === "ROLE_USER") {
-            console.log("user")
-            location.reload();
-        } else if (role[0] === "ROLE_MODERATOR"){
-            console.log("moderator")
-            location.reload();
-        }
-        else {
-            alert("Sai tài khoản hoặc mật khẩu")
-        }
-        getUserName();
+        // if (role[0] === "ROLE_ADMIN") {
+        //     document.getElementById("admin").style.display = "block"
+        //     location.reload();
+        // } else if (role[0] === "ROLE_USER") {
+        //     console.log("user")
+        //     location.reload();
+        // } else if (role[0] === "ROLE_MODERATOR"){
+        //     console.log("moderator")
+        //     location.reload();
+        // }
+        // else {
+        //     alert("Sai tài khoản hoặc mật khẩu")
+        // }
         location.reload();
     })
+        .catch((error) => {
+            // Xử lý lỗi ở đây
+            console.error("Error logging in:", error);
+
+            // Hiển thị thông báo lỗi cho người dùng
+            alert("Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.");
+        });
 }
 
 function hide() {
@@ -94,30 +100,33 @@ function hide() {
         document.getElementById("userImg").style.display = "block"
     }
     if (token === null) {
+
         document.getElementById("register").style.display = "block"
         document.getElementById("login").style.display = "block"
         document.getElementById("logout").style.display = "none"
         document.getElementById("username").style.display = "none"
         document.getElementById("userImg").style.display = "none"
-        document.getElementById("admin").style.display = "none"
+        document.getElementById("adminRole").style.display = "none"
     }
 }
-function getUserName() {
-    let id = localStorage.getItem("id");
-    console.log(id)
-    // Gửi yêu cầu HTTP GET đến API
-    axios.get(`http://localhost:8080/users/${id}`).then((response) => {
-        if (response.status === 200) {
-            // Lấy tên user từ phản hồi
-            const username = response.data.username;
-            console.log(username);
-            document.getElementById("username").innerHTML = `<a id="username-content" onclick="userInfo()">${username}</a>`;
-            document.getElementById("userImg").innerHTML = `
-<img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
-            // Hiển thị ảnh người dùng
-        }
-    });
-}
+
+// function getUserName() {
+//     let id = localStorage.getItem("id");
+//     console.log(id)
+//     // Gửi yêu cầu HTTP GET đến API
+//     axios.get(`http://localhost:8080/users/${id}`).then((response) => {
+//         if (response.status === 200) {
+//             // Lấy tên user từ phản hồi
+//             const username = response.data.username;
+//             console.log(username);
+//             document.getElementById("username").innerHTML = `<a id="username-content" onclick="userInfo()">${username}</a>`;
+//             document.getElementById("userImg").innerHTML = `
+// <img style="width: 30px; border-radius: 50%" id="user-image" src="${response.data.image}" alt="User Image">`;
+//             // Hiển thị ảnh người dùng
+//         }
+//     });
+// }
+
 function logout() {
     localStorage.clear();
     location.reload();

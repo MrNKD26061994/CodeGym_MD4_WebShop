@@ -1,4 +1,37 @@
 function header() {
+    // document.getElementById("adminRole").style.display = "none";
+    let id = localStorage.getItem("id");
+    console.log("ID " + id)
+    axios.get(`http://localhost:8080/users/${id}`).then((res)=>{
+        let listRole = res.data.advertisementSet;
+        console.log(listRole)
+        for (let i = 0; i < 3; i++) {
+            if(listRole[i].roleName.includes("ROLE_ADMIN")) {
+                console.log(listRole[i].roleName)
+                document.getElementById("adminRole").style.display = "block";
+            } else if(listRole[i].roleName.includes("ROLE_MODERATOR")) {
+                console.log(listRole[i].roleName)
+            } else {
+                document.getElementById("adminRole").style.display = "none";
+                console.log(listRole[i].roleName)
+            }
+        }
+        // console.log("AAAAAAAA" + res.data.advertisementSet[0].roleName)
+        // console.log("AAAAAAAA" + res.data.advertisementSet[1].roleName)
+        // console.log("AAAAAAAA" + res.data.advertisementSet[2].roleName)
+        // const role = res.data.advertisementSet[0].roleName;
+        // if (role.includes("ROLE_ADMIN") ) {
+        //     document.getElementById("adminRole").style.display = "block";
+        // } else {
+        //     document.getElementById("adminRole").style.display = "none";
+        // }
+        const username = res.data.username;
+        document.getElementById("username").innerHTML = `<a id="username-content" onclick="userInfo()">${username}</a>`;
+        document.getElementById("userImg").innerHTML = `
+        <img style="width: 30px; border-radius: 50%" id="user-image" src="${res.data.image}" alt="User Image">`;
+    })
+
+
     return `
     <nav class="colorlib-nav" role="navigation">
         <div class="top-menu">
@@ -37,15 +70,29 @@ function header() {
                             <li><a onclick="showFormReport()">Report</a></li>
 
                             <li class="cart"><a onclick="showCart()"><i class="icon-shopping-cart"></i> Cart [<span style="color: red" id="numberCart">0</span>]</a></li>
-                            <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
-                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
+<!--                            <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>-->
+<!--                             <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>-->
 
+<!--                            -->
+<!--                            <li class="cart" id="userImg"></li>-->
+<!--                            <li class="cart" id="username"></li>-->
+<!--                            <li class="cart" id="logout">-->
+<!--                            <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>-->
+<!--                            </li>-->
                             
+                            
+                            <li id="adminRole" ><a onclick="adminForm()">Admin</a></li>
+                            
+                            <li class="cart" id="login" ><a onclick="loginForm()"><i class="icon-log-in"></i>Login</a></li>
+                            <li class="cart" id="register" ><a onclick="registerForm()"><i class="icon-user-add"></i>Register</a></li>
+
                             <li class="cart" id="userImg"></li>
                             <li class="cart" id="username"></li>
                             <li class="cart" id="logout">
                             <a onclick="logout()"><i class="icon-log-out"></i>Logout</a>
                             </li>
+                            
+                            
                         </ul>
                     </div>
                 </div>

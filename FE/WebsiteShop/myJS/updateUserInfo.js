@@ -18,11 +18,15 @@ function userInfo() {
     tempContainer();
 
     function tempContainer() {
-        document.getElementById("container").innerHTML = userContainer();
-    }
+        const container = document.getElementById("container");
 
-    function userContainer() {
-        return `
+        let id = localStorage.getItem("id");
+        console.log(id)
+        // Gửi yêu cầu HTTP GET đến API
+        axios.get(`http://localhost:8080/users/${id}`).then((response) => {
+            if (response.status === 200) {
+                // Lấy tên user từ phản hồi
+                let str = `
     <div class="container justify-content-md-center">
         <div class="row">
             <div class="col-12">
@@ -50,13 +54,13 @@ function userInfo() {
                                     <div class="w-100"></div>
                                     <div class="col-md-6">
                                         <label class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="First name" id="name">
+                                        <input type="text" class="form-control" placeholder="" aria-label="First name" id="name" value="${response.data.name}">
                                     </div>
                                     <div class="w-100"></div>
                                     <!-- Phone number -->
                                     <div class="col-md-6">
                                         <label class="form-label">Phone number *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="phone">
+                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="phone" value="${response.data.phone}">
                                     </div>
                                     <div class="w-100"></div>
                                     <div class="col-md-6">
@@ -67,21 +71,20 @@ function userInfo() {
                                     <!-- Email -->
                                     <div class="col-md-6">
                                         <label for="inputEmail4" class="form-label">Email *</label>
-                                        <input type="email" class="form-control" id="email" value="example@homerealty.com">
+                                        <input type="email" class="form-control" id="email" value="${response.data.email}">
                                     </div>
                                     <div class="w-100"></div>
                                     <div class="form-group col-md-4">
                                         <label for="inputState">State</label>
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
-                                        </select>
+    <select id="gender" class="form-control form-control-sm validate ml-0">
+        <option value="1" ${response.data.gender === 1 ? "selected" : ""}>Nam</option>
+        <option value="0" ${response.data.gender === 0 ? "selected" : ""}>Nữ</option>
+    </select>
                                     </div>
                                     <div class="w-100"></div>
                                     <div class="col-md-6">
                                         <label class="form-label">Address</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="address">
+                                        <input type="text" class="form-control" placeholder="" aria-label="Phone number" id="address" value="${response.data.address}">
                                     </div>
                                 </div> <!-- Row END -->
                             </div>
@@ -127,7 +130,10 @@ function userInfo() {
         </div>
     </div>
 </div>
-`;
+`
+                container.innerHTML = str;
+            }
+        });
 
     }
 }
